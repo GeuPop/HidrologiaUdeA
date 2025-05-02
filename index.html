@@ -2,23 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Consulta por Cédula</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta de Estudiantes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 8px;
+      margin: 5px;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      max-width: 400px;
+    }
+  </style>
 </head>
 <body>
   <h1>Consulta de estudiante</h1>
+  <label for="inputCedula">Cédula:</label>
   <input type="text" id="inputCedula" placeholder="Ingresa la cédula" />
   <button onclick="buscar()">Buscar</button>
-  <div id="resultado" style="margin-top:20px;"></div>
+
+  <div id="resultado"></div>
 
   <script>
     let datos = [];
 
-    // Cargar los datos desde el archivo JSON
-    fetch('datos.json')
+    // Cargar datos sin usar caché
+    fetch('datos.json', { cache: "no-store" })
       .then(response => response.json())
       .then(json => datos = json)
       .catch(error => {
-        document.getElementById('resultado').innerHTML = "Error cargando datos.";
+        document.getElementById('resultado').innerHTML = "Error cargando los datos.";
         console.error("Error al cargar JSON:", error);
       });
 

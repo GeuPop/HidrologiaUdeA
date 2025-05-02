@@ -1,0 +1,42 @@
+[
+  {
+    "cedula": 1000546773,
+    "nombre": "ALVAREZ MARÍN LUISA MARIA",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.6,
+    "taller1": 3.5,
+    "nota_final": 0.98
+  },
+  {
+    "cedula": 1022145418,
+    "nombre": "ARANGO GALLEGO MANUELA",
+    "programa": "ingeniería Civil",
+    "parcial1": 2.98,
+    "taller1": 3.9,
+    "nota_final": 1.104
+  },
+  {
+    "cedula": 1007971122,
+    "nombre": "CASTILLA CASTILLO CORAIMA",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.9,
+    "taller1": 4.3,
+    "nota_final": 1.136
+  },
+  {
+    "cedula": 1001883625,
+    "nombre": "COLLANTE GENES ALEXIS DE JESUS",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 4.15,
+    "taller1": 4.3,
+    "nota_final": 1.406
+  },
+  {
+    "cedula": 1032177244,
+    "nombre": "DIAZ CANCIO ANGELO",
+    "programa": "ingeniería Civil",
+    "parcial1": 3.25,
+    "taller1": 3.5,
+    "nota_final": 1.13
+  }
+]

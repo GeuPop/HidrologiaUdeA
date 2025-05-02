@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulta por Cédula</title>
+</head>
+<body>
+  <h1>Consulta de estudiante</h1>
+  <input type="text" id="inputCedula" placeholder="Ingresa la cédula" />
+  <button onclick="buscar()">Buscar</button>
+  <div id="resultado" style="margin-top:20px;"></div>
+
+  <script>
+    let datos = [];
+
+    // Cargar los datos desde el archivo JSON
+    fetch('datos.json')
+      .then(response => response.json())
+      .then(json => datos = json)
+      .catch(error => {
+        document.getElementById('resultado').innerHTML = "Error cargando datos.";
+        console.error("Error al cargar JSON:", error);
+      });
+
+    function buscar() {
+      const cedula = document.getElementById('inputCedula').value.trim();
+      const resultado = datos.find(item => item.cedula.toString() === cedula);
+      const div = document.getElementById('resultado');
+
+      if (resultado) {
+        div.innerHTML = `
+          <p><strong>Nombre:</strong> ${resultado.nombre}</p>
+          <p><strong>Programa:</strong> ${resultado.programa}</p>
+          <p><strong>Parcial 1:</strong> ${resultado.parcial1}</p>
+          <p><strong>Taller 1:</strong> ${resultado.taller1}</p>
+          <p><strong>Nota Final:</strong> ${resultado.nota_final}</p>
+        `;
+      } else {
+        div.innerHTML = "<p style='color:red;'>Cédula no encontrada.</p>";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hidrología - UdeA</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluir Chart.js -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,6 +70,12 @@
       font-size: 1.1em;
       color: #333;
     }
+
+    #grafico {
+      margin-top: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
@@ -87,12 +94,16 @@
     <button onclick="buscarEstudiante()">Buscar</button>
 
     <div class="resultado" id="resultado"></div>
+
+    <!-- Elemento canvas para mostrar el gráfico -->
+    <canvas id="grafico" width="400" height="300"></canvas>
   </main>
 
   <script>
     async function buscarEstudiante() {
       const cedula = document.getElementById('cedulaInput').value.trim();
       const resultadoDiv = document.getElementById('resultado');
+      const ctx = document.getElementById('grafico').getContext('2d');
       resultadoDiv.innerHTML = "Buscando...";
 
       try {
@@ -103,15 +114,42 @@
         const estudiante = data.find(e => e.cedula.toString() === cedula);
 
         if (estudiante) {
-          resultadoDiv.innerHTML = `
+          // Mostrar los resultados del estudiante
+          resultadoDiv.innerHTML = `  
             <p><strong>Nombre:</strong> ${estudiante.nombre}</p>
             <p><strong>Programa:</strong> ${estudiante.programa}</p>
             <p><strong>Parcial 1:</strong> ${estudiante.parcial1}</p>
             <p><strong>Taller 1:</strong> ${estudiante.taller1}</p>
             <p><strong>Acumulado de la materia sobre 5:</strong> ${estudiante.nota_final}</p>
           `;
+
+          // Crear el gráfico de barras
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Parcial 1', 'Taller 1', 'Nota Final'],
+              datasets: [{
+                label: 'Notas del Estudiante',
+                data: [estudiante.parcial1, estudiante.taller1, estudiante.nota_final],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                borderColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 5 // Limitar el valor máximo a 5
+                }
+              }
+            }
+          });
+
         } else {
           resultadoDiv.innerHTML = "Estudiante no encontrado.";
+          // Limpiar el gráfico si no se encuentra el estudiante
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         }
       } catch (error) {
         resultadoDiv.innerHTML = "Error al cargar los datos.";

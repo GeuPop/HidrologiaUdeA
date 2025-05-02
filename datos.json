@@ -38,5 +38,189 @@
     "parcial1": 3.25,
     "taller1": 3.5,
     "nota_final": 1.13
+  },
+  {
+    "cedula": 1000760507,
+    "nombre": "GARCIA GRAJALES ANGELINE",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 3.7,
+    "taller1": 3.5,
+    "nota_final": 1.22
+  },
+  {
+    "cedula": 1007583709,
+    "nombre": "GONZALEZ RAMIREZ JOSE GABRIEL",
+    "programa": "ingeniería Sanitaria",
+    "parcial1": 3.35,
+    "taller1": 3.5,
+    "nota_final": 1.15
+  },
+  {
+    "cedula": 1001011462,
+    "nombre": "GUTIERREZ MEJIA YARITH",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.55,
+    "taller1": 3.3,
+    "nota_final": 0.906
+  },
+  {
+    "cedula": 1017263196,
+    "nombre": "LONDOÑO ALZATE ALEXANDER",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 1.8,
+    "taller1": 3.3,
+    "nota_final": 0.796
+  },
+  {
+    "cedula": 1001535167,
+    "nombre": "MARIN GONZALEZ VALERIA",
+    "programa": "ingeniería Civil",
+    "parcial1": 1.7,
+    "taller1": 3.4,
+    "nota_final": 0.788
+  },
+  {
+    "cedula": 1020459715,
+    "nombre": "MARTÍNEZ CASTAÑEDA JESSICA ALEJANDRA",
+    "programa": "ingeniería Sanitaria",
+    "parcial1": 0.8,
+    "taller1": 4.4,
+    "nota_final": 0.728
+  },
+  {
+    "cedula": 1035436701,
+    "nombre": "MARTÍNEZ RODRÍGUEZ KEVIN RAFAEL",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 1.9,
+    "taller1": 3.8,
+    "nota_final": 0.876
+  },
+  {
+    "cedula": 1233895661,
+    "nombre": "NONSOQUE GARCIA JUAN SEBASTIAN",
+    "programa": "ingeniería Civil",
+    "parcial1": 2,
+    "taller1": 0,
+    "nota_final": 0.4
+  },
+  {
+    "cedula": 1001139396,
+    "nombre": "OSORIO GRISALES ALEJANDRO",
+    "programa": "ingeniería Civil",
+    "parcial1": 2.2,
+    "taller1": 3.5,
+    "nota_final": 0.9
+  },
+  {
+    "cedula": 1000756784,
+    "nombre": "POLO GALVIS VALERIA",
+    "programa": "ingeniería Civil",
+    "parcial1": 2.78,
+    "taller1": 4.3,
+    "nota_final": 1.132
+  },
+  {
+    "cedula": 1034988144,
+    "nombre": "QUINTERO RODRIGUEZ JUAN MANUEL",
+    "programa": "ingeniería Civil",
+    "parcial1": 3.08,
+    "taller1": 3.9,
+    "nota_final": 1.124
+  },
+  {
+    "cedula": 1007241269,
+    "nombre": "RAMIREZ ZARATE YANCELLY",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.4,
+    "taller1": 4.3,
+    "nota_final": 1.036
+  },
+  {
+    "cedula": 1216976172,
+    "nombre": "RAMOS DE LAS AGUAS DALIS KARINA",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 1.6,
+    "taller1": 2.8,
+    "nota_final": 0.656
+  },
+  {
+    "cedula": 1001237124,
+    "nombre": "ROLDAN VERGARA DANIEL",
+    "programa": "ingeniería Sanitaria",
+    "parcial1": 3.7,
+    "taller1": 4.6,
+    "nota_final": 1.332
+  },
+  {
+    "cedula": 1004133917,
+    "nombre": "ROSERO MONCAYO SAMADHI JUSEPH",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.23,
+    "taller1": 3.4,
+    "nota_final": 0.854
+  },
+  {
+    "cedula": 1000760730,
+    "nombre": "RUEDA ARROYAVE JUAN DIEGO",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 3.65,
+    "taller1": 3.8,
+    "nota_final": 1.226
+  },
+  {
+    "cedula": 1056769464,
+    "nombre": "SALAS RONCANCIO KATHERIN",
+    "programa": "ingeniería Civil",
+    "parcial1": 2.9,
+    "taller1": 3.9,
+    "nota_final": 1.088
+  },
+  {
+    "cedula": 1013337720,
+    "nombre": "SANCHEZ CORDOBA LESLY MANUELA",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.7,
+    "taller1": 3.5,
+    "nota_final": 1.02
+  },
+  {
+    "cedula": 1192920363,
+    "nombre": "SIERRA VANEGAS FERNANDO JOSE",
+    "programa": "ingeniería Sanitaria",
+    "parcial1": 3.8,
+    "taller1": 4.6,
+    "nota_final": 1.352
+  },
+  {
+    "cedula": 1057600549,
+    "nombre": "TRIANA BALAGUERA CRISTHIAN ERNESTO",
+    "programa": "ingeniería Civil",
+    "parcial1": 2.1,
+    "taller1": 4.4,
+    "nota_final": 0.988
+  },
+  {
+    "cedula": 1036963025,
+    "nombre": "ZAPATA GALVIS MICHAEL SEBASTIAN",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 1.93,
+    "taller1": 0,
+    "nota_final": 0.426
+  },
+  {
+    "cedula": 1037664625,
+    "nombre": "RODRIGUEZ LONDOÑO ANA MARIA",
+    "programa": "ingeniería Civil",
+    "parcial1": 1.05,
+    "taller1": 3.9,
+    "nota_final": 0.718
+  },
+  {
+    "cedula": 1037648094,
+    "nombre": "ÚSUGA TIRADO MARIA ALEJANDRA",
+    "programa": "ingeniería Ambiental",
+    "parcial1": 2.6,
+    "taller1": 2.8,
+    "nota_final": 0.856
   }
 ]

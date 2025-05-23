@@ -1,4 +1,5 @@
-/* style.css */
+/* css/style.css */
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -42,4 +43,3 @@ select, input {
   border-radius: 0.5rem;
   border: none;
 }
-

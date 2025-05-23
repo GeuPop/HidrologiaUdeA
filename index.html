@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hidrología UdeA</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -10,31 +11,29 @@
     <h1>Hidrología UdeA</h1>
     <p>
       Esta página fue diseñada para agendar los espacios de sustentación del Taller 2 y la bonificación de Python.
-      A continuación digite el nombre del grupo y proceda a elegir la fecha y hora para cada uno.
+      A continuación digite el nombre del grupo y proceda a elegir la fecha y hora para cada uno. 
       Recuerden que los espacios de sustentación se hacen en las duplas.
     </p>
     
-    <!-- Botón iniciar agendamiento -->
+    <!-- Iniciar agendamiento -->
     <button id="btn-start">Agendar espacio</button>
-    
-    <!-- Formulario de agendamiento -->
     <div id="form-agenda" class="hidden">
-      <label>Ingrese nombres de la dupla (ej. Ana Castrillón y José Montes)</label>
+      <label for="input-nombre">Ingrese nombres de la dupla (ej. Ana Castrillón y José Montes)</label>
       <input type="text" id="input-nombre" placeholder="Nombres de la dupla">
       
       <div class="options-row">
         <button data-type="taller" class="btn-type">Sustentación Taller 2</button>
-        <button data-type="boni"  class="btn-type">Sustentación Bonificación de Python</button>
+        <button data-type="boni"   class="btn-type">Sustentación Bonificación de Python</button>
       </div>
       
       <div id="step-2" class="hidden">
-        <label>Fecha:</label>
+        <label for="select-fecha">Fecha:</label>
         <select id="select-fecha"></select>
         
-        <label>Hora:</label>
+        <label for="select-hora">Hora:</label>
         <select id="select-hora"></select>
         
-        <label>Correo para confirmación:</label>
+        <label for="input-email">Correo para confirmación:</label>
         <input type="email" id="input-email" placeholder="tu@correo.com">
         
         <button id="btn-submit">Confirmar cita</button>
@@ -43,15 +42,14 @@
     
     <hr>
     
-    <!-- Botón eliminar cita -->
+    <!-- Eliminar cita -->
     <button id="btn-delete">Eliminar agendamiento</button>
     <div id="form-delete" class="hidden">
-      <label>Ingresa el número de ID de tu agendamiento:</label>
+      <label for="input-id">Ingresa el número de ID de tu agendamiento:</label>
       <input type="text" id="input-id" placeholder="ID de cita">
       <button id="btn-delete-confirm">Eliminar</button>
     </div>
     
-    <!-- Botón volver al inicio -->
     <button id="btn-reset" class="hidden">Volver al inicio</button>
   </div>
 

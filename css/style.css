@@ -1,1 +1,45 @@
+/* style.css */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: url('https://source.unsplash.com/1600x900/?forest') no-repeat center/cover;
+  color: #f0f0f0;
+}
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: rgba(0, 50, 20, 0.8);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+h1 {
+  color: #a8ff60;
+}
+button {
+  background: #2b7a0b;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+button:hover {
+  background: #1f5a08;
+}
+.hidden {
+  display: none;
+}
+.options-row {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+select, input {
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+}
 

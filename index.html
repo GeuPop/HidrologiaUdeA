@@ -2,161 +2,59 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Hidrología - UdeA</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluir Chart.js -->
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    header {
-      background-color: #004b87;
-      color: white;
-      padding: 30px 20px 15px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    header h2 {
-      margin: 5px 0 10px;
-      font-weight: normal;
-      font-size: 1.5em;
-      color: #d2e5f7;
-    }
-
-    main {
-      padding: 30px 20px;
-    }
-
-    p.description {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    input[type="text"] {
-      padding: 10px;
-      font-size: 1em;
-      width: 200px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #004b99;
-    }
-
-    .resultado {
-      margin-top: 30px;
-      font-size: 1.1em;
-      color: #333;
-    }
-
-    #grafico {
-      margin-top: 30px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-  </style>
+  <title>Hidrología UdeA</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <header>
-    <h1>Hidrología - UdeA</h1>
-    <h2>Facultad de Ingeniería</h2>
-  </header>
-
-  <main>
-    <p class="description">
-      En esta página se podrán consultar las notas de los estudiantes de ingeniería ambiental, civil y sanitaria de la UdeA.
+  <div class="container">
+    <h1>Hidrología UdeA</h1>
+    <p>
+      Esta página fue diseñada para agendar los espacios de sustentación del Taller 2 y la bonificación de Python.
+      A continuación digite el nombre del grupo y proceda a elegir la fecha y hora para cada uno.
+      Recuerden que los espacios de sustentación se hacen en las duplas.
     </p>
+    
+    <!-- Botón iniciar agendamiento -->
+    <button id="btn-start">Agendar espacio</button>
+    
+    <!-- Formulario de agendamiento -->
+    <div id="form-agenda" class="hidden">
+      <label>Ingrese nombres de la dupla (ej. Ana Castrillón y José Montes)</label>
+      <input type="text" id="input-nombre" placeholder="Nombres de la dupla">
+      
+      <div class="options-row">
+        <button data-type="taller" class="btn-type">Sustentación Taller 2</button>
+        <button data-type="boni"  class="btn-type">Sustentación Bonificación de Python</button>
+      </div>
+      
+      <div id="step-2" class="hidden">
+        <label>Fecha:</label>
+        <select id="select-fecha"></select>
+        
+        <label>Hora:</label>
+        <select id="select-hora"></select>
+        
+        <label>Correo para confirmación:</label>
+        <input type="email" id="input-email" placeholder="tu@correo.com">
+        
+        <button id="btn-submit">Confirmar cita</button>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <!-- Botón eliminar cita -->
+    <button id="btn-delete">Eliminar agendamiento</button>
+    <div id="form-delete" class="hidden">
+      <label>Ingresa el número de ID de tu agendamiento:</label>
+      <input type="text" id="input-id" placeholder="ID de cita">
+      <button id="btn-delete-confirm">Eliminar</button>
+    </div>
+    
+    <!-- Botón volver al inicio -->
+    <button id="btn-reset" class="hidden">Volver al inicio</button>
+  </div>
 
-    <input type="text" id="cedulaInput" placeholder="Ingrese cédula">
-    <button onclick="buscarEstudiante()">Buscar</button>
-
-    <div class="resultado" id="resultado"></div>
-
-    <!-- Elemento canvas para mostrar el gráfico -->
-    <canvas id="grafico" width="400" height="300"></canvas>
-  </main>
-
-  <script>
-    async function buscarEstudiante() {
-      const cedula = document.getElementById('cedulaInput').value.trim();
-      const resultadoDiv = document.getElementById('resultado');
-      const ctx = document.getElementById('grafico').getContext('2d');
-      resultadoDiv.innerHTML = "Buscando...";
-
-      try {
-        // Para evitar caché, agrega un parámetro único a la URL
-        const response = await fetch('datos.json?t=' + new Date().getTime());
-        const data = await response.json();
-
-        const estudiante = data.find(e => e.cedula.toString() === cedula);
-
-        if (estudiante) {
-          // Mostrar los resultados del estudiante
-          resultadoDiv.innerHTML = `  
-            <p><strong>Nombre:</strong> ${estudiante.nombre}</p>
-            <p><strong>Programa:</strong> ${estudiante.programa}</p>
-            <p><strong>Parcial 1:</strong> ${estudiante.parcial1}</p>
-            <p><strong>Taller 1:</strong> ${estudiante.taller1}</p>
-            <p><strong>Acumulado de la materia sobre 5:</strong> ${estudiante.nota_final}</p>
-          `;
-
-          // Crear el gráfico de barras
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ['Parcial 1', 'Taller 1', 'Nota Final'],
-              datasets: [{
-                label: 'Notas del Estudiante',
-                data: [estudiante.parcial1, estudiante.taller1, estudiante.nota_final],
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                borderColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  max: 5 // Limitar el valor máximo a 5
-                }
-              }
-            }
-          });
-
-        } else {
-          resultadoDiv.innerHTML = "Estudiante no encontrado.";
-          // Limpiar el gráfico si no se encuentra el estudiante
-          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        }
-      } catch (error) {
-        resultadoDiv.innerHTML = "Error al cargar los datos.";
-        console.error(error);
-      }
-    }
-  </script>
-
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,121 +1,85 @@
-// js/script.js
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxfW1pxPQxEbh1IDFsSZR5YXd3ZtErBJgZ6DlKgCPGuq9UXckzMrvCMW66TJQ1I0YCXhQ/exec';
 
-// 1) Pega aquí la URL de tu Web App desplegada en Google Apps Script:
-const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycby8ZJwNIplQMu67I4FljM597g_m-FMzMcfNAFKDebjQmTqp3xtl7Wl0-YYNVKQcP1biYQ/exec';
-
-// Genera franjas de N minutos entre start y end
-function generateSlots(start, end, minutes) {
-  const [h0, m0] = start.split(':').map(Number);
-  const [h1, m1] = end.split(':').map(Number);
-  let slots = [];
-  let cur = new Date(0,0,0,h0,m0);
-  const endDate = new Date(0,0,0,h1,m1);
-  while (cur < endDate) {
-    let next = new Date(cur.getTime() + minutes * 60000);
-    slots.push(
-      `${String(cur.getHours()).padStart(2,'0')}:${String(cur.getMinutes()).padStart(2,'0')} - ` +
-      `${String(next.getHours()).padStart(2,'0')}:${String(next.getMinutes()).padStart(2,'0')}`
-    );
-    cur = next;
+// 🔄 Llamar a la API para obtener horas ocupadas
+async function fetchTaken(tipo, fecha) {
+  try {
+    const res = await fetch(`${WEBAPP_URL}?action=list&tipo=${tipo}&fecha=${fecha}`);
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+    const data = await res.json();
+    return data.taken || [];
+  } catch (err) {
+    console.error("Error al obtener horas ocupadas:", err);
+    return [];
   }
-  return slots;
 }
 
-// Definición de fechas y franjas fijas
-const slotsConfig = {
-  taller: {
-    fechas: ['2025-05-29', '2025-05-30'],
-    horas: generateSlots('14:00', '17:00', 15)
-  },
-  boni: {
-    fechas: ['2025-06-04'],
-    horas: [
-      ...generateSlots('14:00', '16:45', 15),
-      ...generateSlots('18:00', '20:00', 15)
-    ]
+// 🟢 Agendar una cita
+async function submitForm(data) {
+  try {
+    const res = await fetch(WEBAPP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'add', ...data })
+    });
+
+    const result = await res.json();
+
+    if (result.status === 'ok') {
+      alert(`Cita agendada con éxito. ID: ${result.id}`);
+    } else {
+      alert("Hubo un error al agendar la cita.");
+    }
+  } catch (err) {
+    console.error("Error al enviar formulario:", err);
+    alert("Error al conectar con el servidor.");
   }
-};
+}
 
-// Helper para seleccionar IDs
-const $ = id => document.getElementById(id);
+// 🔴 Eliminar cita
+async function deleteCita(id) {
+  try {
+    const res = await fetch(WEBAPP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'delete', id })
+    });
 
-let currentType = null;
+    const result = await res.json();
+    if (result.status === 'deleted') {
+      alert("Cita eliminada correctamente.");
+    } else {
+      alert("No se encontró la cita.");
+    }
+  } catch (err) {
+    console.error("Error al eliminar cita:", err);
+    alert("Error de conexión.");
+  }
+}
 
-// Paso 1: mostrar form de agendamiento
-$('btn-start').onclick = () => {
-  $('btn-start').classList.add('hidden');
-  $('form-agenda').classList.remove('hidden');
-};
+// 📅 Actualizar horas disponibles al cambiar fecha o tipo
+document.querySelector('#fecha, #tipo').addEventListener('change', async () => {
+  const tipo = document.querySelector('#tipo').value;
+  const fecha = document.querySelector('#fecha').value;
+  const taken = await fetchTaken(tipo, fecha);
 
-// Paso 2: elegir tipo de cita
-document.querySelectorAll('.btn-type').forEach(btn => {
-  btn.onclick = () => {
-    currentType = btn.dataset.type;
-    // poblar fechas
-    $('select-fecha').innerHTML = slotsConfig[currentType].fechas
-      .map(d => `<option value="${d}">${d}</option>`).join('');
-    // mostrar siguiente paso
-    $('step-2').classList.remove('hidden');
-    updateHoras();                       // cargar horas la primera vez
-    $('select-fecha').onchange = updateHoras;
-  };
+  const selectHora = document.querySelector('#hora');
+  Array.from(selectHora.options).forEach(option => {
+    option.disabled = taken.includes(option.value);
+  });
 });
 
-// Consulta al API qué slots ya están ocupados
-async function fetchTaken(tipo, fecha) {
-  const res = await fetch(`${WEBAPP_URL}?action=list&tipo=${tipo}&fecha=${fecha}`);
-  const json = await res.json();
-  return json.taken || [];
-}
+// 📨 Enviar formulario
+document.querySelector('#formulario').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-// Rellena el select-hora filtrando los ocupados
-async function updateHoras() {
-  const fecha = $('select-fecha').value;
-  const taken = await fetchTaken(currentType, fecha);
-  $('select-hora').innerHTML = slotsConfig[currentType].horas
-    .filter(h => !taken.includes(h))
-    .map(h => `<option>${h}</option>`).join('');
-}
-
-// Confirmar y enviar cita
-$('btn-submit').onclick = async () => {
-  const payload = {
-    action: 'add',
-    nombre: $('input-nombre').value,
-    taller: currentType === 'taller',
-    boni:   currentType === 'boni',
-    fecha:  $('select-fecha').value,
-    hora:   $('select-hora').value,
-    email:  $('input-email').value
+  const data = {
+    nombre: document.querySelector('#nombre').value,
+    email: document.querySelector('#email').value,
+    fecha: document.querySelector('#fecha').value,
+    hora: document.querySelector('#hora').value,
+    taller: document.querySelector('#tipo').value === 'taller',
+    boni: document.querySelector('#tipo').value === 'boni'
   };
-  const res = await fetch(WEBAPP_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  const json = await res.json();
-  alert(`Cita confirmada. Tu ID es: ${json.id}`);
-  $('btn-reset').classList.remove('hidden');
-};
 
-// Eliminar cita
-$('btn-delete').onclick = () => {
-  $('btn-delete').classList.add('hidden');
-  $('form-delete').classList.remove('hidden');
-};
-$('btn-delete-confirm').onclick = async () => {
-  const payload = { action: 'delete', id: $('input-id').value };
-  const res = await fetch(WEBAPP_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  const json = await res.json();
-  alert(json.status === 'deleted'
-    ? 'Cita eliminada correctamente'
-    : 'ID no encontrado');
-  $('btn-reset').classList.remove('hidden');
-};
-
-// Volver al inicio
-$('btn-reset').onclick = () => location.reload();
+  await submitForm(data);
+});

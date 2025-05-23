@@ -1,28 +1,28 @@
-// script.js
+// js/script.js
 
 // 1) Pega aquí la URL de tu Web App desplegada en Google Apps Script:
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycby8ZJwNIplQMu67I4FljM597g_m-FMzMcfNAFKDebjQmTqp3xtl7Wl0-YYNVKQcP1biYQ/exec';
 
-// Elementos del DOM
-const btnStart = document.getElementById('btn-start');
-const formAgenda = document.getElementById('form-agenda');
-const typeButtons = document.querySelectorAll('.btn-type');
-const step2 = document.getElementById('step-2');
-const selectFecha = document.getElementById('select-fecha');
-const selectHora  = document.getElementById('select-hora');
-const btnSubmit   = document.getElementById('btn-submit');
-const inputNombre = document.getElementById('input-nombre');
-const inputEmail  = document.getElementById('input-email');
-const btnReset    = document.getElementById('btn-reset');
-const btnDelete   = document.getElementById('btn-delete');
-const formDelete  = document.getElementById('form-delete');
-const btnDeleteConfirm = document.getElementById('btn-delete-confirm');
-const inputId     = document.getElementById('input-id');
+// Genera franjas de N minutos entre start y end
+function generateSlots(start, end, minutes) {
+  const [h0, m0] = start.split(':').map(Number);
+  const [h1, m1] = end.split(':').map(Number);
+  let slots = [];
+  let cur = new Date(0,0,0,h0,m0);
+  const endDate = new Date(0,0,0,h1,m1);
+  while (cur < endDate) {
+    let next = new Date(cur.getTime() + minutes * 60000);
+    slots.push(
+      `${String(cur.getHours()).padStart(2,'0')}:${String(cur.getMinutes()).padStart(2,'0')} - ` +
+      `${String(next.getHours()).padStart(2,'0')}:${String(next.getMinutes()).padStart(2,'0')}`
+    );
+    cur = next;
+  }
+  return slots;
+}
 
-let currentType = null;
-
-// Definición de fechas y franjas
-const slots = {
+// Definición de fechas y franjas fijas
+const slotsConfig = {
   taller: {
     fechas: ['2025-05-29', '2025-05-30'],
     horas: generateSlots('14:00', '17:00', 15)
@@ -36,60 +36,57 @@ const slots = {
   }
 };
 
-// Función para generar intervalos de N minutos
-function generateSlots(start, end, min) {
-  const [h0, m0] = start.split(':').map(Number);
-  const [h1, m1] = end.split(':').map(Number);
-  let res = [];
-  let cur = new Date(0,0,0,h0,m0), endD = new Date(0,0,0,h1,m1);
-  while (cur <= endD) {
-    let next = new Date(cur.getTime() + min * 60000);
-    if (next > endD) break;
-    res.push(
-      `${cur.getHours().toString().padStart(2,'0')}:`+
-      `${cur.getMinutes().toString().padStart(2,'0')} - `+
-      `${next.getHours().toString().padStart(2,'0')}:`+
-      `${next.getMinutes().toString().padStart(2,'0')}`
-    );
-    cur = next;
-  }
-  return res;
-}
+// Helper para seleccionar IDs
+const $ = id => document.getElementById(id);
 
-// Mostrar formulario de agendamiento
-btnStart.onclick = () => {
-  btnStart.classList.add('hidden');
-  formAgenda.classList.remove('hidden');
+let currentType = null;
+
+// Paso 1: mostrar form de agendamiento
+$('btn-start').onclick = () => {
+  $('btn-start').classList.add('hidden');
+  $('form-agenda').classList.remove('hidden');
 };
 
-// Selección de tipo de cita
-typeButtons.forEach(btn => btn.onclick = () => {
-  currentType = btn.dataset.type;
-  // Poblar fechas
-  selectFecha.innerHTML = slots[currentType].fechas
-    .map(d => `<option value="${d}">${d}</option>`)
-    .join('');
-  // Mostrar siguiente paso
-  step2.classList.remove('hidden');
-  selectFecha.onchange();
+// Paso 2: elegir tipo de cita
+document.querySelectorAll('.btn-type').forEach(btn => {
+  btn.onclick = () => {
+    currentType = btn.dataset.type;
+    // poblar fechas
+    $('select-fecha').innerHTML = slotsConfig[currentType].fechas
+      .map(d => `<option value="${d}">${d}</option>`).join('');
+    // mostrar siguiente paso
+    $('step-2').classList.remove('hidden');
+    updateHoras();                       // cargar horas la primera vez
+    $('select-fecha').onchange = updateHoras;
+  };
 });
 
-// Al cambiar de fecha, recargar horas
-selectFecha.onchange = () => {
-  selectHora.innerHTML = slots[currentType].horas
-    .map(h => `<option>${h}</option>`).join('');
-};
+// Consulta al API qué slots ya están ocupados
+async function fetchTaken(tipo, fecha) {
+  const res = await fetch(`${WEBAPP_URL}?action=list&tipo=${tipo}&fecha=${fecha}`);
+  const json = await res.json();
+  return json.taken || [];
+}
 
-// Confirmar cita
-btnSubmit.onclick = async () => {
+// Rellena el select-hora filtrando los ocupados
+async function updateHoras() {
+  const fecha = $('select-fecha').value;
+  const taken = await fetchTaken(currentType, fecha);
+  $('select-hora').innerHTML = slotsConfig[currentType].horas
+    .filter(h => !taken.includes(h))
+    .map(h => `<option>${h}</option>`).join('');
+}
+
+// Confirmar y enviar cita
+$('btn-submit').onclick = async () => {
   const payload = {
     action: 'add',
-    nombre: inputNombre.value,
+    nombre: $('input-nombre').value,
     taller: currentType === 'taller',
     boni:   currentType === 'boni',
-    fecha:  selectFecha.value,
-    hora:   selectHora.value,
-    email:  inputEmail.value
+    fecha:  $('select-fecha').value,
+    hora:   $('select-hora').value,
+    email:  $('input-email').value
   };
   const res = await fetch(WEBAPP_URL, {
     method: 'POST',
@@ -98,21 +95,16 @@ btnSubmit.onclick = async () => {
   });
   const json = await res.json();
   alert(`Cita confirmada. Tu ID es: ${json.id}`);
-  btnReset.classList.remove('hidden');
-};
-
-// Volver al inicio
-btnReset.onclick = () => location.reload();
-
-// Mostrar formulario de eliminación
-btnDelete.onclick = () => {
-  btnDelete.classList.add('hidden');
-  formDelete.classList.remove('hidden');
+  $('btn-reset').classList.remove('hidden');
 };
 
 // Eliminar cita
-btnDeleteConfirm.onclick = async () => {
-  const payload = { action: 'delete', id: inputId.value };
+$('btn-delete').onclick = () => {
+  $('btn-delete').classList.add('hidden');
+  $('form-delete').classList.remove('hidden');
+};
+$('btn-delete-confirm').onclick = async () => {
+  const payload = { action: 'delete', id: $('input-id').value };
   const res = await fetch(WEBAPP_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -122,6 +114,8 @@ btnDeleteConfirm.onclick = async () => {
   alert(json.status === 'deleted'
     ? 'Cita eliminada correctamente'
     : 'ID no encontrado');
-  btnReset.classList.remove('hidden');
+  $('btn-reset').classList.remove('hidden');
 };
 
+// Volver al inicio
+$('btn-reset').onclick = () => location.reload();

@@ -1,5 +1,5 @@
 // URL de tu API de Google Apps Script (reemplázala con tu URL real)
-const API_URL = 'https://script.google.com/macros/s/AKfycbxPs8bhrMtboAL1uCMkYH3rOFNZf_GlDuRRAFYoTRelPl8NZ08iWUqexWgQSOT2AqTYvQ/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycby2o95YgCfxf6ckMe9y7wF5386Q23C6xoXwBZwpgKs0YSn-gDV77zZlqbgxqgRDEYFxzA/exec';
 
 // Evitar caché del navegador
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/macros/s/TU_ID/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwKGsNjwtKvoeYk_sNW9dCe3xONGpGhQ2_u8x35Gvb1pSjiOjdNUvnNSCPX2ZeRtgpRQg/exec';
 
 // Función para cargar horarios (Actualizada)
 async function loadWorkshop2Times(date) {

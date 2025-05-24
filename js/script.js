@@ -1,85 +1,251 @@
-const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxfW1pxPQxEbh1IDFsSZR5YXd3ZtErBJgZ6DlKgCPGuq9UXckzMrvCMW66TJQ1I0YCXhQ/exec';
-
-// 🔄 Llamar a la API para obtener horas ocupadas
-async function fetchTaken(tipo, fecha) {
-  try {
-    const res = await fetch(`${WEBAPP_URL}?action=list&tipo=${tipo}&fecha=${fecha}`);
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    const data = await res.json();
-    return data.taken || [];
-  } catch (err) {
-    console.error("Error al obtener horas ocupadas:", err);
-    return [];
-  }
-}
-
-// 🟢 Agendar una cita
-async function submitForm(data) {
-  try {
-    const res = await fetch(WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'add', ...data })
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del DOM
+    const scheduleBtn = document.getElementById('scheduleBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const activityModal = document.getElementById('activityModal');
+    const closeModal = document.querySelector('.close');
+    const workshop2Btn = document.getElementById('workshop2Btn');
+    const pythonBtn = document.getElementById('pythonBtn');
+    const workshop2Form = document.getElementById('workshop2Form');
+    const pythonForm = document.getElementById('pythonForm');
+    const cancelForm = document.getElementById('cancelForm');
+    const workshop2Back = document.getElementById('workshop2Back');
+    const pythonBack = document.getElementById('pythonBack');
+    const cancelBack = document.getElementById('cancelBack');
+    const confirmation = document.getElementById('confirmation');
+    const closeConfirmation = document.getElementById('closeConfirmation');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    
+    // URLs de la API de Google Apps Script
+    const API_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI';
+    
+    // Cargar horas disponibles para Python (4 de junio)
+    loadPythonTimes();
+    
+    // Event Listeners
+    scheduleBtn.addEventListener('click', () => {
+        activityModal.style.display = 'block';
     });
-
-    const result = await res.json();
-
-    if (result.status === 'ok') {
-      alert(`Cita agendada con éxito. ID: ${result.id}`);
-    } else {
-      alert("Hubo un error al agendar la cita.");
-    }
-  } catch (err) {
-    console.error("Error al enviar formulario:", err);
-    alert("Error al conectar con el servidor.");
-  }
-}
-
-// 🔴 Eliminar cita
-async function deleteCita(id) {
-  try {
-    const res = await fetch(WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'delete', id })
+    
+    cancelBtn.addEventListener('click', () => {
+        hideAllForms();
+        cancelForm.classList.remove('hidden');
     });
-
-    const result = await res.json();
-    if (result.status === 'deleted') {
-      alert("Cita eliminada correctamente.");
-    } else {
-      alert("No se encontró la cita.");
+    
+    closeModal.addEventListener('click', () => {
+        activityModal.style.display = 'none';
+    });
+    
+    workshop2Btn.addEventListener('click', () => {
+        activityModal.style.display = 'none';
+        hideAllForms();
+        workshop2Form.classList.remove('hidden');
+    });
+    
+    pythonBtn.addEventListener('click', () => {
+        activityModal.style.display = 'none';
+        hideAllForms();
+        pythonForm.classList.remove('hidden');
+    });
+    
+    workshop2Back.addEventListener('click', () => {
+        hideAllForms();
+        activityModal.style.display = 'block';
+    });
+    
+    pythonBack.addEventListener('click', () => {
+        hideAllForms();
+        activityModal.style.display = 'block';
+    });
+    
+    cancelBack.addEventListener('click', () => {
+        hideAllForms();
+    });
+    
+    closeConfirmation.addEventListener('click', () => {
+        confirmation.classList.add('hidden');
+    });
+    
+    // Cuando se selecciona un día para el Taller 2, cargar las horas disponibles
+    document.getElementById('workshop2Day').addEventListener('change', function() {
+        const selectedDay = this.value;
+        const timeSelect = document.getElementById('workshop2Time');
+        
+        if (selectedDay) {
+            timeSelect.disabled = false;
+            loadWorkshop2Times(selectedDay);
+        } else {
+            timeSelect.disabled = true;
+            timeSelect.innerHTML = '<option value="">Primero seleccione un día</option>';
+        }
+    });
+    
+    // Enviar formulario Taller 2
+    document.getElementById('workshop2Form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const names = document.getElementById('workshop2Names').value;
+        const day = document.getElementById('workshop2Day').value;
+        const time = document.getElementById('workshop2Time').value;
+        const email = document.getElementById('workshop2Email').value;
+        
+        const appointment = {
+            activity: 'Taller 2',
+            names: names,
+            date: day,
+            time: time,
+            email: email
+        };
+        
+        bookAppointment(appointment);
+    });
+    
+    // Enviar formulario Python
+    document.getElementById('pythonForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const names = document.getElementById('pythonNames').value;
+        const time = document.getElementById('pythonTime').value;
+        const email = document.getElementById('pythonEmail').value;
+        
+        const appointment = {
+            activity: 'Bonificación Python',
+            names: names,
+            date: '2025-06-04',
+            time: time,
+            email: email
+        };
+        
+        bookAppointment(appointment);
+    });
+    
+    // Enviar formulario de cancelación
+    document.getElementById('cancelAppointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('cancelEmail').value;
+        
+        cancelAppointment(email);
+    });
+    
+    // Funciones auxiliares
+    function hideAllForms() {
+        workshop2Form.classList.add('hidden');
+        pythonForm.classList.add('hidden');
+        cancelForm.classList.add('hidden');
     }
-  } catch (err) {
-    console.error("Error al eliminar cita:", err);
-    alert("Error de conexión.");
-  }
-}
-
-// 📅 Actualizar horas disponibles al cambiar fecha o tipo
-document.querySelector('#fecha, #tipo').addEventListener('change', async () => {
-  const tipo = document.querySelector('#tipo').value;
-  const fecha = document.querySelector('#fecha').value;
-  const taken = await fetchTaken(tipo, fecha);
-
-  const selectHora = document.querySelector('#hora');
-  Array.from(selectHora.options).forEach(option => {
-    option.disabled = taken.includes(option.value);
-  });
-});
-
-// 📨 Enviar formulario
-document.querySelector('#formulario').addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const data = {
-    nombre: document.querySelector('#nombre').value,
-    email: document.querySelector('#email').value,
-    fecha: document.querySelector('#fecha').value,
-    hora: document.querySelector('#hora').value,
-    taller: document.querySelector('#tipo').value === 'taller',
-    boni: document.querySelector('#tipo').value === 'boni'
-  };
-
-  await submitForm(data);
+    
+    function loadWorkshop2Times(date) {
+        fetch(`${API_URL}?action=getAvailableTimes&activity=Taller 2&date=${date}`)
+            .then(response => response.json())
+            .then(data => {
+                const timeSelect = document.getElementById('workshop2Time');
+                timeSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+                
+                data.availableTimes.forEach(time => {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = time;
+                    timeSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al cargar los horarios disponibles');
+            });
+    }
+    
+    function loadPythonTimes() {
+        fetch(`${API_URL}?action=getAvailableTimes&activity=Bonificación Python&date=2025-06-04`)
+            .then(response => response.json())
+            .then(data => {
+                const timeSelect = document.getElementById('pythonTime');
+                timeSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+                
+                data.availableTimes.forEach(time => {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = time;
+                    timeSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al cargar los horarios disponibles');
+            });
+    }
+    
+    function bookAppointment(appointment) {
+        fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'bookAppointment',
+                appointment: appointment
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showConfirmation(`Se ha agendado correctamente la sustentación de ${appointment.activity} para ${appointment.names} el ${formatDate(appointment.date)} a las ${appointment.time}. Se ha enviado un correo de confirmación a ${appointment.email}.`);
+                resetForms();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al agendar la cita');
+        });
+    }
+    
+    function cancelAppointment(email) {
+        if (!confirm('¿Está seguro que desea cancelar la reserva asociada a este correo?')) {
+            return;
+        }
+        
+        fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'cancelAppointment',
+                email: email
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showConfirmation(`Se ha cancelado la reserva asociada al correo ${email}. Se ha enviado un correo de confirmación.`);
+                document.getElementById('cancelEmail').value = '';
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al cancelar la cita');
+        });
+    }
+    
+    function showConfirmation(message) {
+        confirmationMessage.textContent = message;
+        confirmation.classList.remove('hidden');
+    }
+    
+    function resetForms() {
+        document.getElementById('workshop2Form').reset();
+        document.getElementById('pythonForm').reset();
+        document.getElementById('workshop2Time').disabled = true;
+        document.getElementById('workshop2Time').innerHTML = '<option value="">Primero seleccione un día</option>';
+        hideAllForms();
+    }
+    
+    function formatDate(dateString) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString('es-ES', options);
+    }
 });

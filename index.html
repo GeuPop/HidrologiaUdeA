@@ -21,35 +21,37 @@
 </head>
 <body>
     <!-- Fondo de bosque -->
-    <div class="forest-background"></div>
-    <div class="forest-overlay"></div>
+    <div class="forest-background" aria-hidden="true"></div>
+    <div class="forest-overlay" aria-hidden="true"></div>
     
     <!-- Contenido principal -->
-    <div class="container">
+    <main class="container">
         <header>
             <h1>Hidrología UdeA</h1>
             <p>En este espacio los estudiantes de hidrología (2025-1) podrán agendar los espacios de sustentación para el Taller 2 y la bonificación de Python.</p>
         </header>
 
         <!-- Botones principales -->
-        <div class="buttons-container">
+        <section class="buttons-container" aria-label="Acciones principales">
             <button id="scheduleBtn" class="btn primary">Agendar un espacio</button>
             <button id="cancelBtn" class="btn secondary">Eliminar espacio agendado</button>
-        </div>
+        </section>
 
         <!-- Modal para selección de actividad -->
-        <div id="activityModal" class="modal hidden">
+        <div id="activityModal" class="modal hidden" role="dialog" aria-labelledby="modalTitle">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Selecciona la actividad a agendar</h2>
-                <button id="workshop2Btn" class="btn activity-btn">Taller 2</button>
-                <button id="pythonBtn" class="btn activity-btn">Bonificación de Python</button>
+                <button class="close" aria-label="Cerrar modal">&times;</button>
+                <h2 id="modalTitle">Selecciona la actividad a agendar</h2>
+                <div class="modal-actions">
+                    <button id="workshop2Btn" class="btn activity-btn">Taller 2</button>
+                    <button id="pythonBtn" class="btn activity-btn">Bonificación de Python</button>
+                </div>
             </div>
         </div>
 
         <!-- Formulario para Taller 2 -->
-        <div id="workshop2Form" class="form-container hidden">
-            <h2>Agendar espacio para sustentar Taller 2</h2>
+        <section id="workshop2Section" class="form-container hidden" aria-labelledby="workshop2Heading">
+            <h2 id="workshop2Heading">Agendar espacio para sustentar Taller 2</h2>
             <form id="workshop2Form">
                 <div class="form-group">
                     <label for="workshop2Names">Nombres de la dupla</label>
@@ -58,11 +60,12 @@
                 
                 <div class="form-group">
                     <label for="workshop2Day">Día de sustentación</label>
-                    <select id="workshop2Day" required>
+                    <select id="workshop2Day" required aria-describedby="dayHelp">
                         <option value="">Seleccione un día</option>
                         <option value="2025-05-29">29 de mayo de 2025</option>
                         <option value="2025-05-30">30 de mayo de 2025</option>
                     </select>
+                    <small id="dayHelp" class="help-text">Días disponibles para sustentación</small>
                 </div>
                 
                 <div class="form-group">
@@ -82,18 +85,18 @@
                     <button type="submit" class="btn primary">Agendar</button>
                 </div>
             </form>
-        </div>
+        </section>
 
         <!-- Formulario para Bonificación Python -->
-        <div id="pythonForm" class="form-container hidden">
-            <h2>Agendar espacio para sustentar Bonificación de Python</h2>
+        <section id="pythonSection" class="form-container hidden" aria-labelledby="pythonHeading">
+            <h2 id="pythonHeading">Agendar espacio para sustentar Bonificación de Python</h2>
             <form id="pythonForm">
                 <div class="form-group">
                     <label for="pythonNames">Nombres de la dupla</label>
                     <input type="text" id="pythonNames" placeholder="Ej: María y José" required>
                 </div>
                 
-                <div class="note">
+                <div class="note" role="note">
                     <p>Las sustentaciones de las bonificaciones serán el 4 de junio de 2025.</p>
                 </div>
                 
@@ -114,11 +117,11 @@
                     <button type="submit" class="btn primary">Agendar</button>
                 </div>
             </form>
-        </div>
+        </section>
 
         <!-- Formulario para cancelar cita -->
-        <div id="cancelForm" class="form-container hidden">
-            <h2>Eliminar espacio agendado</h2>
+        <section id="cancelSection" class="form-container hidden" aria-labelledby="cancelHeading">
+            <h2 id="cancelHeading">Eliminar espacio agendado</h2>
             <form id="cancelAppointmentForm">
                 <div class="form-group">
                     <label for="cancelEmail">Correo electrónico usado en el agendamiento</label>
@@ -130,15 +133,15 @@
                     <button type="submit" class="btn danger">Eliminar reserva</button>
                 </div>
             </form>
-        </div>
+        </section>
 
         <!-- Mensaje de confirmación -->
-        <div id="confirmation" class="confirmation hidden">
+        <div id="confirmation" class="confirmation hidden" role="alert">
             <h2>¡Reserva confirmada!</h2>
             <p id="confirmationMessage"></p>
             <button id="closeConfirmation" class="btn primary">Aceptar</button>
         </div>
-    </div>
+    </main>
 
     <!-- JavaScript -->
     <script src="script.js"></script>

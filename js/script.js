@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmationMessage = document.getElementById('confirmationMessage');
     
     // URLs de la API de Google Apps Script
-    const API_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbxPs8bhrMtboAL1uCMkYH3rOFNZf_GlDuRRAFYoTRelPl8NZ08iWUqexWgQSOT2AqTYvQ/exec';
     
     // Cargar horas disponibles para Python (4 de junio)
     loadPythonTimes();

@@ -18,7 +18,7 @@
   box-sizing: border-box;
 }
 
-@import url('https://script.google.com/macros/s/AKfycbwKGsNjwtKvoeYk_sNW9dCe3xONGpGhQ2_u8x35Gvb1pSjiOjdNUvnNSCPX2ZeRtgpRQg/exec');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 body {
   font-family: 'Montserrat', sans-serif;

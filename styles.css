@@ -1,77 +1,109 @@
+/* ======== ESTILO GENERAL ======== */
 body {
     font-family: Arial, sans-serif;
-    background: #eef5ff;
+    background: #eef4ff;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 50, 0.1);
+    max-width: 480px;
+    margin: auto;
+    padding: 20px;
 }
 
+/* ======== TITULOS ======== */
 h1 {
     text-align: center;
-    color: #1a4ba0;
+    color: #003366;
+    font-size: 28px;
+    margin-bottom: 5px;
 }
 
-p {
+.subtitulo {
     text-align: center;
-    color: #333;
-    font-size: 15px;
+    margin-bottom: 20px;
+    color: #345;
+    font-size: 16px;
 }
 
-.input-section {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+/* ======== TARJETA ======== */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* ======== FORMULARIO ======== */
+label {
+    font-weight: bold;
+    color: #003366;
 }
 
 input {
-    flex: 1;
+    width: 100%;
     padding: 12px;
-    border: 2px solid #1a4ba0;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ccd5e3;
     border-radius: 8px;
     font-size: 16px;
 }
 
 button {
-    padding: 12px 20px;
-    background: #1a4ba0;
+    width: 100%;
+    background: #0055aa;
     color: white;
     border: none;
+    padding: 12px;
     border-radius: 8px;
+    font-size: 17px;
     cursor: pointer;
-    font-size: 16px;
-    transition: 0.2s;
 }
 
 button:hover {
-    background: #163f82;
+    background: #003f7d;
 }
 
+/* ======== RESULTADO ======== */
 .resultado {
-    margin-top: 25px;
-    padding: 20px;
-    background: #f2f6ff;
-    border-left: 5px solid #1a4ba0;
-    border-radius: 8px;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f0f6ff;
+    border-left: 5px solid #0055aa;
+    border-radius: 10px;
+}
+
+.oculto {
     display: none;
 }
 
-.resultado p {
-    text-align: left;
-    font-size: 16px;
-    margin: 6px 0;
+/* ======== MENSAJE ======== */
+.mensaje {
+    font-weight: bold;
+    color: #aa0000;
+    text-align: center;
 }
 
+/* ======== NOTA ======== */
 .nota {
-    margin-top: 30px;
-    text-align: center;
+    margin-top: 25px;
     color: red;
+    text-align: center;
     font-size: 14px;
+    padding: 0 10px;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    .card {
+        padding: 18px;
+    }
+    input, button {
+        font-size: 15px;
+    }
 }

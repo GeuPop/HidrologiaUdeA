@@ -2,31 +2,118 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hidrología UdeA</title>
 
-    <link rel="stylesheet" href="styles.css?v=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8f1fa;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background: #0a3d62;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0a3d62;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 2px solid #0a3d62;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background: #0a3d62;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #074166;
+        }
+
+        .resultado {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f1f7ff;
+            border-left: 5px solid #0a3d62;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .error {
+            margin-top: 25px;
+            padding: 15px;
+            background: #ffe5e5;
+            border-left: 5px solid #d63031;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #c0392b;
+        }
+
+        .nota {
+            margin-top: 30px;
+            color: red;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Hidrología UdeA</h1>
-        <p>En esta página usted podrá consultar sus notas por número de cédula.</p>
 
-        <div class="input-section">
-            <input type="text" id="cedulaInput" placeholder="Ingrese su número de cédula">
-            <button onclick="buscarCedula()">Consultar</button>
-        </div>
+<header>Hidrología UdeA</header>
 
-        <div id="resultado" class="resultado"></div>
+<div class="container">
+    <p>En esta página usted podrá consultar sus notas por número de cédula.</p>
 
-        <p class="nota">Si tiene dudas sobre las notas o el nombre y notas no corresponden a las suyas, contáctese con el profesor.</p>
-    </div>
+    <label for="cedula">Número de cédula:</label>
+    <input type="text" id="cedula" placeholder="Ingrese su cédula">
 
-    <script src="script.js?v=1.0"></script>
+    <button onclick="buscarCedula()">Consultar</button>
+
+    <div id="resultado"></div>
+
+    <p class="nota">
+        Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas contáctese con el profesor.
+    </p>
+</div>
+
+<!-- Cache busting automático -->
+<script>
+    document.write('<script src="script.js?v=' + Date.now() + '"><\/script>');
+</script>
+
 </body>
 </html>

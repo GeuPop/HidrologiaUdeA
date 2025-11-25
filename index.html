@@ -5,36 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Notas - Hidrología</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-graduation-cap"></i>Consulta de Notas</h1>
-            <p>Curso de Hidrología</p>
-        </div>
+    <div class="background-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
 
-        <div class="card">
-            <div class="form-group">
-                <label for="cedula">Ingrese su número de cédula:</label>
-                <div class="input-with-icon">
-                    <i class="fas fa-id-card"></i>
-                    <input type="text" id="cedula" placeholder="Ejemplo: 1001479220">
+    <div class="container">
+        <div class="glass-card">
+            <div class="header">
+                <div class="icon-circle">
+                    <i class="fas fa-water"></i>
                 </div>
+                <h1>Consulta de Notas</h1>
+                <p class="subtitle">Hidrología</p>
             </div>
 
-            <button id="buscar">
-                <i class="fas fa-search"></i> Buscar Notas
-            </button>
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="cedula">
+                        <i class="fas fa-id-card"></i>
+                        Número de Cédula
+                    </label>
+                    <input type="text" id="cedula" placeholder="Ej: 1-2345-6789">
+                </div>
 
-            <div id="resultado" class="resultado"></div>
+                <button id="buscar" class="modern-btn">
+                    <span class="btn-content">
+                        <i class="fas fa-search"></i>
+                        Consultar Notas
+                    </span>
+                    <div class="btn-shine"></div>
+                </button>
+            </div>
 
-            <div class="nota">
-                <i class="fas fa-exclamation-circle"></i>
-                <div>
-                    Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas,
-                    contáctese con el profesor.
+            <div id="resultado" class="result-container"></div>
+
+            <div class="info-note">
+                <div class="note-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="note-content">
+                    <strong>¿Encontraste algún problema?</strong>
+                    <p>Si tus notas o información personal no coinciden, por favor contacta al profesor inmediatamente.</p>
                 </div>
             </div>
         </div>

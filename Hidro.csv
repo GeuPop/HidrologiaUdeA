@@ -1,4 +1,4 @@
-﻿#;Cédula;Nombre;Email;Area;P1;P2
+Numero;Cédula;Nombre;Email;Area;P1;P2
 1;1002155449;ABELLO ALCALA MARIA;maria.abelloa@udea.edu.co;Río Otún (Pereira y Marsella) RISARALDA;2.9;2.3
 2;1035431338;ARIAS ZULUAGA PAULA ANDREA;paula.arias3@udea.edu.co;Río Supía (Supía y Riosucio) CALDAS;2.5;2.2
 3;1062427742;BERDELLA LOPEZ GABRIELA;gabriela.berdella@udea.edu.co;Río Cártama (Támesis y Valparaíso);2.5;2.9
@@ -34,3 +34,4 @@
 33;1040871914;VALENCIA CASTANO LUNA;luna.valenciac@udea.edu.co;Río Las Ceibas (Neiva) HUILA;4.4;4.3
 1;1036660734;MOSQUERA IBARGUEN DELIA MARIA;delia.mosquera@udea.edu.co;Río Buey (Abejorral, Santa Bárbara y La Pintada);2.2;2.4
 2;1037648094;ÚSUGA TIRADO MARIA ALEJANDRA;mariaa.usuga@udea.edu.co;Río Supía (Supía y Riosucio) CALDAS;2.3;2.1
+

@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Notas - Hidrología</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>Consulta de Notas</h1>
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i>Consulta de Notas</h1>
+            <p>Curso de Hidrología</p>
+        </div>
 
         <div class="card">
-            <label for="cedula">Ingrese su número de cédula:</label>
-            <input type="text" id="cedula" placeholder="Ejemplo: 1001479220">
+            <div class="form-group">
+                <label for="cedula">Ingrese su número de cédula:</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" id="cedula" placeholder="Ejemplo: 1001479220">
+                </div>
+            </div>
 
-            <button id="buscar">Buscar</button>
+            <button id="buscar">
+                <i class="fas fa-search"></i> Buscar Notas
+            </button>
 
-            <div id="resultado" class="resultado"></div>
+            <div id="resultado" class="resultado" style="display: none;"></div>
 
-            <p class="nota">
-                Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas,
-                contáctese con el profesor.
-            </p>
+            <div class="nota">
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas,
+                    contáctese con el profesor.
+                </div>
+            </div>
         </div>
     </div>
 

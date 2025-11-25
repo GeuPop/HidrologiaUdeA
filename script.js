@@ -1,26 +1,41 @@
-function calcular() {
-    const lluvia = parseFloat(document.getElementById("lluvia").value);
-    const tiempo = parseFloat(document.getElementById("tiempo").value);
-    const mensaje = document.getElementById("mensaje");
-    const resultado = document.getElementById("resultado");
+// URL cruda del JSON en GitHub Pages o raw.githubusercontent
+const url = "https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/datos.json";
 
-    mensaje.classList.add("oculto");
-    resultado.classList.add("oculto");
+async function cargarDatos() {
+    const error = document.getElementById("error");
+    const tabla = document.getElementById("tabla");
+    const thead = document.getElementById("thead");
+    const tbody = document.getElementById("tbody");
 
-    if (isNaN(lluvia) || isNaN(tiempo) || tiempo <= 0) {
-        mensaje.textContent = "Por favor ingresa valores válidos.";
-        mensaje.classList.remove("oculto");
-        return;
+    try {
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error("No se pudo obtener el JSON");
+        }
+
+        const data = await res.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+            throw new Error("El JSON está vacío o mal formado");
+        }
+
+        // Crear encabezados dinámicamente
+        const columnas = Object.keys(data[0]);
+        thead.innerHTML = `
+            <tr>${columnas.map(col => `<th>${col}</th>`).join("")}</tr>
+        `;
+
+        // Crear filas
+        tbody.innerHTML = data.map(fila =>
+            `<tr>${columnas.map(col => `<td>${fila[col]}</td>`).join("")}</tr>`
+        ).join("");
+
+        tabla.classList.remove("oculto");
+
+    } catch (e) {
+        error.textContent = "❌ Error cargando los datos: " + e.message;
     }
-
-    const intensidadMin = lluvia / tiempo;
-    const intensidadHora = (lluvia / tiempo) * 60;
-
-    resultado.innerHTML = `
-        <strong>Resultados:</strong><br><br>
-        • Intensidad: <strong>${intensidadMin.toFixed(2)} mm/min</strong><br>
-        • Intensidad: <strong>${intensidadHora.toFixed(2)} mm/h</strong>
-    `;
-
-    resultado.classList.remove("oculto");
 }
+
+cargarDatos();

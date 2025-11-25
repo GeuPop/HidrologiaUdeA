@@ -2,148 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidrología UdeA - Agendamiento</title>
-    
-    <!-- Metas para evitar caché -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <!-- Estilos -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://www.udea.edu.co/wps/wcm/connect/udea/362548fe-9e5b-4bd8-bf9a-7c7a92a0d771/favicon.ico?MOD=AJPERES">
+    <title>Hidrología UdeA</title>
+
+    <link rel="stylesheet" href="styles.css?v=1.0">
+
 </head>
 <body>
-    <!-- Fondo de bosque -->
-    <div class="forest-background" aria-hidden="true"></div>
-    <div class="forest-overlay" aria-hidden="true"></div>
-    
-    <!-- Contenido principal -->
-    <main class="container">
-        <header>
-            <h1>Hidrología UdeA</h1>
-            <p>En este espacio los estudiantes de hidrología (2025-1) podrán agendar los espacios de sustentación para el Taller 2 y la bonificación de Python.</p>
-        </header>
+    <div class="container">
+        <h1>Hidrología UdeA</h1>
+        <p>En esta página usted podrá consultar sus notas por número de cédula.</p>
 
-        <!-- Botones principales -->
-        <section class="buttons-container" aria-label="Acciones principales">
-            <button id="scheduleBtn" class="btn primary">Agendar un espacio</button>
-            <button id="cancelBtn" class="btn secondary">Eliminar espacio agendado</button>
-        </section>
-
-        <!-- Modal para selección de actividad -->
-        <div id="activityModal" class="modal hidden" role="dialog" aria-labelledby="modalTitle">
-            <div class="modal-content">
-                <button class="close" aria-label="Cerrar modal">&times;</button>
-                <h2 id="modalTitle">Selecciona la actividad a agendar</h2>
-                <div class="modal-actions">
-                    <button id="workshop2Btn" class="btn activity-btn">Taller 2</button>
-                    <button id="pythonBtn" class="btn activity-btn">Bonificación de Python</button>
-                </div>
-            </div>
+        <div class="input-section">
+            <input type="text" id="cedulaInput" placeholder="Ingrese su número de cédula">
+            <button onclick="buscarCedula()">Consultar</button>
         </div>
 
-        <!-- Formulario para Taller 2 -->
-        <section id="workshop2Section" class="form-container hidden" aria-labelledby="workshop2Heading">
-            <h2 id="workshop2Heading">Agendar espacio para sustentar Taller 2</h2>
-            <form id="workshop2Form">
-                <div class="form-group">
-                    <label for="workshop2Names">Nombres de la dupla</label>
-                    <input type="text" id="workshop2Names" placeholder="Ej: María y José" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="workshop2Day">Día de sustentación</label>
-                    <select id="workshop2Day" required aria-describedby="dayHelp">
-                        <option value="">Seleccione un día</option>
-                        <option value="2025-05-29">29 de mayo de 2025</option>
-                        <option value="2025-05-30">30 de mayo de 2025</option>
-                    </select>
-                    <small id="dayHelp" class="help-text">Días disponibles para sustentación</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="workshop2Time">Hora de sustentación</label>
-                    <select id="workshop2Time" disabled required>
-                        <option value="">Primero seleccione un día</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="workshop2Email">Correo electrónico</label>
-                    <input type="email" id="workshop2Email" placeholder="ejemplo@udea.edu.co" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" id="workshop2Back" class="btn secondary">Volver</button>
-                    <button type="submit" class="btn primary">Agendar</button>
-                </div>
-            </form>
-        </section>
+        <div id="resultado" class="resultado"></div>
 
-        <!-- Formulario para Bonificación Python -->
-        <section id="pythonSection" class="form-container hidden" aria-labelledby="pythonHeading">
-            <h2 id="pythonHeading">Agendar espacio para sustentar Bonificación de Python</h2>
-            <form id="pythonForm">
-                <div class="form-group">
-                    <label for="pythonNames">Nombres de la dupla</label>
-                    <input type="text" id="pythonNames" placeholder="Ej: María y José" required>
-                </div>
-                
-                <div class="note" role="note">
-                    <p>Las sustentaciones de las bonificaciones serán el 4 de junio de 2025.</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pythonTime">Hora de sustentación</label>
-                    <select id="pythonTime" required>
-                        <option value="">Cargando horarios disponibles...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pythonEmail">Correo electrónico</label>
-                    <input type="email" id="pythonEmail" placeholder="ejemplo@udea.edu.co" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" id="pythonBack" class="btn secondary">Volver</button>
-                    <button type="submit" class="btn primary">Agendar</button>
-                </div>
-            </form>
-        </section>
+        <p class="nota">Si tiene dudas sobre las notas o el nombre y notas no corresponden a las suyas, contáctese con el profesor.</p>
+    </div>
 
-        <!-- Formulario para cancelar cita -->
-        <section id="cancelSection" class="form-container hidden" aria-labelledby="cancelHeading">
-            <h2 id="cancelHeading">Eliminar espacio agendado</h2>
-            <form id="cancelAppointmentForm">
-                <div class="form-group">
-                    <label for="cancelEmail">Correo electrónico usado en el agendamiento</label>
-                    <input type="email" id="cancelEmail" placeholder="ejemplo@udea.edu.co" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" id="cancelBack" class="btn secondary">Volver</button>
-                    <button type="submit" class="btn danger">Eliminar reserva</button>
-                </div>
-            </form>
-        </section>
-
-        <!-- Mensaje de confirmación -->
-        <div id="confirmation" class="confirmation hidden" role="alert">
-            <h2>¡Reserva confirmada!</h2>
-            <p id="confirmationMessage"></p>
-            <button id="closeConfirmation" class="btn primary">Aceptar</button>
-        </div>
-    </main>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js?v=1.0"></script>
 </body>
 </html>

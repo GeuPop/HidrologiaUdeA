@@ -1,44 +1,56 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbwKGsNjwtKvoeYk_sNW9dCe3xONGpGhQ2_u8x35Gvb1pSjiOjdNUvnNSCPX2ZeRtgpRQg/exec';
+// Cambia esto por el RAW URL de tu CSV en GitHub
+const CSV_URL = "TU_URL_RAW_DEL_CSV_AQUI.csv";
 
-// Función para cargar horarios (Actualizada)
-async function loadWorkshop2Times(date) {
-  const timeSelect = document.getElementById('workshop2Time');
-  try {
-    timeSelect.disabled = true;
-    timeSelect.innerHTML = '<option value="">Cargando...</option>';
+async function cargarCSV() {
+    const noCacheUrl = CSV_URL + "?v=" + new Date().getTime(); // evita caché
 
-    // Nueva URL con parámetros codificados
-    const url = new URL(API_URL);
-    url.searchParams.append('action', 'getAvailableTimes');
-    url.searchParams.append('activity', 'Taller 2');
-    url.searchParams.append('date', date);
-    url.searchParams.append('cache', Date.now());
-
-    const response = await fetch(url, {
-      method: 'GET',
-      mode: 'cors',
-      redirect: 'follow'
+    const response = await fetch(noCacheUrl, {
+        cache: "no-store"
     });
 
-    const data = await response.json();
-    
-    if (!data.success) throw new Error(data.message);
+    const data = await response.text();
+    return parseCSV(data);
+}
 
-    timeSelect.innerHTML = data.availableTimes.length > 0 
-      ? '<option value="">Seleccione una hora</option>'
-      : '<option value="">No hay horarios</option>';
+function parseCSV(csv) {
+    const lineas = csv.trim().split("\n");
+    const headers = lineas[0].split(",");
 
-    data.availableTimes.forEach(time => {
-      const option = document.createElement('option');
-      option.value = time;
-      option.textContent = time;
-      timeSelect.appendChild(option);
+    return lineas.slice(1).map(linea => {
+        const columnas = linea.split(",");
+        let obj = {};
+        headers.forEach((h, i) => {
+            obj[h.trim()] = columnas[i]?.trim();
+        });
+        return obj;
     });
+}
 
-  } catch (error) {
-    console.error('Error:', error);
-    timeSelect.innerHTML = `<option value="">Error: ${error.message}</option>`;
-  } finally {
-    timeSelect.disabled = false;
-  }
+async function buscarCedula() {
+    const cedula = document.getElementById("cedulaInput").value.trim();
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (cedula === "") {
+        resultadoDiv.style.display = "block";
+        resultadoDiv.innerHTML = "<p>Por favor ingrese un número de cédula.</p>";
+        return;
+    }
+
+    const datos = await cargarCSV();
+    const encontrado = datos.find(row => row["Cédula"] === cedula);
+
+    if (!encontrado) {
+        resultadoDiv.style.display = "block";
+        resultadoDiv.innerHTML = "<p>No se encontró información para esta cédula.</p>";
+        return;
+    }
+
+    resultadoDiv.style.display = "block";
+    resultadoDiv.innerHTML = `
+        <p><strong>Cédula:</strong> ${encontrado["Cédula"]}</p>
+        <p><strong>Nombre:</strong> ${encontrado["Nombre"]}</p>
+        <p><strong>Email:</strong> ${encontrado["Email"]}</p>
+        <p><strong>P1:</strong> ${encontrado["P1"]}</p>
+        <p><strong>P2:</strong> ${encontrado["P2"]}</p>
+    `;
 }

@@ -1,4 +1,4 @@
-const JSON_URL = "Hidro.json";
+const JSON_URL = "Hidro.json?v=3";
 let datos = [];
 
 // Cargar JSON

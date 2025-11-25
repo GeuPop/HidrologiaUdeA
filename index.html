@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Notas - Hidrología</title>
-
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hidrología UdeA - Consulta de Notas</title>
+    <link rel="stylesheet" href="style.css?v=1.0">
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Consulta de Notas</h1>
+        <h1>Hidrología UdeA</h1>
+        <p class="descripcion">En esta página usted podrá consultar sus notas por número de cédula.</p>
 
         <div class="card">
-            <label for="cedula">Ingrese su número de cédula:</label>
-            <input type="text" id="cedula" placeholder="Ejemplo: 1001479220">
+            <label for="cedula">Número de cédula:</label>
+            <input type="text" id="cedula" placeholder="Ingrese su cédula">
 
             <button id="buscar">Buscar</button>
 
-            <div id="resultado" class="resultado"></div>
-
-            <p class="nota">
-                Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas,
-                contáctese con el profesor.
-            </p>
+            <div id="resultado" class="resultado oculto"></div>
         </div>
+
+        <p class="nota">
+            Si tiene dudas sobre las notas o el nombre no corresponde a las suyas,
+            contáctese con el profesor.
+        </p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.0"></script>
 </body>
 </html>

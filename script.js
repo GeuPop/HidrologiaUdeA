@@ -1,56 +1,108 @@
-// Cambia esto por el RAW URL de tu CSV en GitHub
-const CSV_URL = "Hidro.csv";
+// ================================
+//   CONFIGURACIÓN
+// ================================
+const CSV_URL = "Hidro.csv?t=" + new Date().getTime(); // evitar caché
 
+// Columnas que NO quieres mostrar
+const COLUMNAS_OCULTAS = ["Numero", "Area"];
+
+
+// ================================
+//   Cargar CSV
+// ================================
 async function cargarCSV() {
-    const noCacheUrl = CSV_URL + "?v=" + new Date().getTime(); // evita caché
+    try {
+        const respuesta = await fetch(CSV_URL, { cache: "no-store" });
+        let texto = await respuesta.text();
 
-    const response = await fetch(noCacheUrl, {
-        cache: "no-store"
-    });
+        // Eliminar BOM invisible al inicio
+        texto = texto.replace(/^\uFEFF/, "");
 
-    const data = await response.text();
-    return parseCSV(data);
+        return parseCSV(texto);
+    } catch (e) {
+        console.error("Error cargando CSV:", e);
+        return [];
+    }
 }
 
+
+// ================================
+//   Parsear CSV separado por ;
+// ================================
 function parseCSV(csv) {
     const lineas = csv.trim().split("\n");
-    const headers = lineas[0].split(";");
+    const headers = lineas[0].split(";").map(h => h.trim());
 
     return lineas.slice(1).map(linea => {
         const columnas = linea.split(";");
+
         let obj = {};
         headers.forEach((h, i) => {
-            obj[h.trim()] = columnas[i]?.trim();
+            obj[h] = columnas[i] ? columnas[i].trim() : "";
         });
         return obj;
     });
 }
 
+
+// ================================
+//   Buscar por Cédula
+// ================================
 async function buscarCedula() {
-    const cedula = document.getElementById("cedulaInput").value.trim();
-    const resultadoDiv = document.getElementById("resultado");
+    const cedula = document.getElementById("cedula").value.trim();
+    const contenedor = document.getElementById("resultado");
 
     if (cedula === "") {
-        resultadoDiv.style.display = "block";
-        resultadoDiv.innerHTML = "<p>Por favor ingrese un número de cédula.</p>";
+        contenedor.innerHTML = `<p style="color:red">Por favor ingrese una cédula.</p>`;
         return;
     }
 
     const datos = await cargarCSV();
-    const encontrado = datos.find(row => row["Cédula"] === cedula);
+
+    // Buscar coincidencia exacta
+    const encontrado = datos.find(row =>
+        row["Cédula"]?.toString().trim() === cedula
+    );
 
     if (!encontrado) {
-        resultadoDiv.style.display = "block";
-        resultadoDiv.innerHTML = "<p>No se encontró información para esta cédula.</p>";
+        contenedor.innerHTML = `<p style="color:red">No se encontraron datos para esta cédula.</p>`;
         return;
     }
 
-    resultadoDiv.style.display = "block";
-    resultadoDiv.innerHTML = `
-        <p><strong>Cédula:</strong> ${encontrado["Cédula"]}</p>
-        <p><strong>Nombre:</strong> ${encontrado["Nombre"]}</p>
-        <p><strong>Email:</strong> ${encontrado["Email"]}</p>
-        <p><strong>P1:</strong> ${encontrado["P1"]}</p>
-        <p><strong>P2:</strong> ${encontrado["P2"]}</p>
+    mostrarResultado(encontrado);
+}
+
+
+// ================================
+//   Mostrar los datos encontrados
+// ================================
+function mostrarResultado(row) {
+    const contenedor = document.getElementById("resultado");
+
+    let html = `
+        <div class="card">
+            <h3>Resultados</h3>
+            <table class="tabla">
     `;
+
+    Object.keys(row).forEach(columna => {
+        if (!COLUMNAS_OCULTAS.includes(columna)) {
+            html += `
+                <tr>
+                    <td><strong>${columna}</strong></td>
+                    <td>${row[columna]}</td>
+                </tr>
+            `;
+        }
+    });
+
+    html += `
+            </table>
+            <p style="color:red; margin-top:10px;">
+                Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas contáctese con el profesor.
+            </p>
+        </div>
+    `;
+
+    contenedor.innerHTML = html;
 }

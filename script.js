@@ -1,39 +1,26 @@
-const JSON_URL = "Hidro.json?v=3";
-let datos = [];
-
-// Cargar JSON
-fetch(JSON_URL)
-  .then(r => r.json())
-  .then(d => {
-      datos = d;
-      console.log("Datos cargados:", datos.length);
-  })
-  .catch(err => console.error("Error cargando JSON:", err));
-
-function buscar() {
-    const cedula = document.getElementById("cedulaInput").value.trim();
+function calcular() {
+    const lluvia = parseFloat(document.getElementById("lluvia").value);
+    const tiempo = parseFloat(document.getElementById("tiempo").value);
     const mensaje = document.getElementById("mensaje");
     const resultado = document.getElementById("resultado");
 
-    mensaje.textContent = "";
+    mensaje.classList.add("oculto");
     resultado.classList.add("oculto");
 
-    if (cedula === "") {
-        mensaje.textContent = "Ingrese un número de cédula.";
+    if (isNaN(lluvia) || isNaN(tiempo) || tiempo <= 0) {
+        mensaje.textContent = "Por favor ingresa valores válidos.";
+        mensaje.classList.remove("oculto");
         return;
     }
 
-    const registro = datos.find(x => String(x.Cédula) === cedula);
+    const intensidadMin = lluvia / tiempo;
+    const intensidadHora = (lluvia / tiempo) * 60;
 
-    if (!registro) {
-        mensaje.textContent = "No se encontró esta cédula en la base de datos.";
-        return;
-    }
-
-    document.getElementById("nombre").textContent = registro.Nombre;
-    document.getElementById("email").textContent = registro.Email;
-    document.getElementById("p1").textContent = registro.P1 || "—";
-    document.getElementById("p2").textContent = registro.P2 || "—";
+    resultado.innerHTML = `
+        <strong>Resultados:</strong><br><br>
+        • Intensidad: <strong>${intensidadMin.toFixed(2)} mm/min</strong><br>
+        • Intensidad: <strong>${intensidadHora.toFixed(2)} mm/h</strong>
+    `;
 
     resultado.classList.remove("oculto");
 }

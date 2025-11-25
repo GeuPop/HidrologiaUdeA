@@ -2,7 +2,7 @@ const JSON_URL = "Hidro.json";
 
 async function cargarDatos() {
     try {
-        const respuesta = await fetch(JSON_URL + "?v=" + Date.now());
+        const respuesta = await fetch(JSON_URL);
         if (!respuesta.ok) {
             throw new Error("No se pudo cargar el archivo JSON");
         }
@@ -21,8 +21,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resultadoDiv = document.getElementById("resultado");
 
     btnBuscar.addEventListener("click", () => {
-        resultadoDiv.classList.remove("oculto");
-
         const cedulaIngresada = inputCedula.value.trim();
         if (!cedulaIngresada) {
             resultadoDiv.innerHTML = "<p style='color:red;'>Ingrese un número de cédula.</p>";

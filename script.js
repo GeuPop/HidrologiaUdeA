@@ -2,108 +2,89 @@ const JSON_URL = "Hidro.json";
 
 async function cargarDatos() {
     try {
-        const respuesta = await fetch(JSON_URL);
-        if (!respuesta.ok) {
-            throw new Error("No se pudo cargar el archivo JSON");
-        }
-        const datos = await respuesta.json();
-        return datos;
+        const resp = await fetch(JSON_URL);
+        if (!resp.ok) throw new Error("No se pudo cargar el JSON");
+        return await resp.json();
     } catch (error) {
-        console.error("Error cargando JSON:", error);
+        console.error("Error:", error);
         return null;
     }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+
     const datos = await cargarDatos();
-    const inputCedula = document.getElementById("cedula");
-    const btnBuscar = document.getElementById("buscar");
-    const resultadoDiv = document.getElementById("resultado");
+    const input = document.getElementById("cedula");
+    const buscarBtn = document.getElementById("buscar");
+    const resultado = document.getElementById("resultado");
 
-    btnBuscar.addEventListener("click", () => {
-        const cedulaIngresada = inputCedula.value.trim();
-        
-        if (!cedulaIngresada) {
-            mostrarError("Por favor, ingrese un número de cédula válido.");
-            return;
-        }
+    buscarBtn.onclick = () => buscar();
 
-        if (!datos) {
-            mostrarError("Error al cargar los datos del sistema.");
-            return;
-        }
+    input.onkeypress = e => {
+        if (e.key === "Enter") buscar();
+    };
+
+    function buscar() {
+        const cedula = input.value.trim();
+
+        if (!cedula) return mostrarError("Ingrese un número de cédula válido.");
+        if (!datos) return mostrarError("No se pudieron cargar los datos.");
 
         mostrarCargando();
 
         setTimeout(() => {
-            const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
-
-            if (!estudiante) {
-                mostrarError("No se encontró ningún estudiante con esta cédula.");
-                return;
-            }
-
+            const estudiante = datos.find(e => e.Cédula == cedula);
+            if (!estudiante) return mostrarError("No se encontró esta cédula.");
             mostrarResultado(estudiante);
-        }, 1000);
-    });
+        }, 700);
+    }
 
     function mostrarCargando() {
-        resultadoDiv.className = "result-container show";
-        resultadoDiv.innerHTML = `
-            <div class="loading-spinner">
+        resultado.classList.add("show");
+        resultado.innerHTML = `
+            <div class="loading">
                 <div class="spinner"></div>
                 <p>Buscando información...</p>
             </div>
         `;
     }
 
-    function mostrarError(mensaje) {
-        resultadoDiv.className = "result-container show";
-        resultadoDiv.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>${mensaje}</span>
+    function mostrarError(msg) {
+        resultado.classList.add("show");
+        resultado.innerHTML = `
+            <div class="error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>${msg}</span>
             </div>
         `;
     }
 
-    function mostrarResultado(estudiante) {
-        resultadoDiv.className = "result-container show";
-        resultadoDiv.innerHTML = `
-            <div class="result-header">
+    function mostrarResultado(est) {
+
+        resultado.classList.add("show");
+
+        resultado.innerHTML = `
+            <div class="res-title">
                 <i class="fas fa-user-graduate"></i>
-                <h3>Información del Estudiante</h3>
+                <h3>Información del estudiante</h3>
             </div>
-            <div class="result-grid">
-                <div class="result-item">
-                    <span class="result-label">Cédula:</span>
-                    <span class="result-value">${estudiante["Cédula"]}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Nombre:</span>
-                    <span class="result-value">${estudiante["Nombre"]}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Email:</span>
-                    <span class="result-value">${estudiante["Email"]}</span>
-                </div>
+
+            <div class="res-grid">
+                <div><strong>Cédula:</strong> ${est["Cédula"]}</div>
+                <div><strong>Nombre:</strong> ${est["Nombre"]}</div>
+                <div><strong>Email:</strong> ${est["Email"]}</div>
             </div>
-            <div class="grades-container">
+
+            <div class="grades">
                 <div class="grade-card">
-                    <div class="grade-label">Parcial 1</div>
-                    <div class="grade-value">${estudiante["P1"]}</div>
+                    <span>Parcial 1</span>
+                    <h2>${est["P1"]}</h2>
                 </div>
                 <div class="grade-card">
-                    <div class="grade-label">Parcial 2</div>
-                    <div class="grade-value">${estudiante["P2"]}</div>
+                    <span>Parcial 2</span>
+                    <h2>${est["P2"]}</h2>
                 </div>
             </div>
         `;
     }
-
-    inputCedula.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            btnBuscar.click();
-        }
-    });
 });

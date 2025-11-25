@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Notas - Hidrología</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-animation">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
 
-    <div class="container">
-        <div class="glass-card">
-            <div class="header">
-                <div class="icon-circle">
+    <div class="background"></div>
+
+    <main class="container">
+        <section class="card">
+
+            <header class="header">
+                <div class="icon-bubble">
                     <i class="fas fa-water"></i>
                 </div>
                 <h1>Consulta de Notas</h1>
                 <p class="subtitle">Hidrología</p>
-            </div>
+            </header>
 
             <div class="form-section">
                 <div class="input-group">
@@ -34,28 +33,21 @@
                     <input type="text" id="cedula" placeholder="Ej: 1-2345-6789">
                 </div>
 
-                <button id="buscar" class="modern-btn">
-                    <span class="btn-content">
-                        <i class="fas fa-search"></i>
-                        Consultar Notas
-                    </span>
-                    <div class="btn-shine"></div>
+                <button id="buscar" class="btn-primary">
+                    <i class="fas fa-search"></i>
+                    Consultar Notas
                 </button>
             </div>
 
-            <div id="resultado" class="result-container"></div>
+            <div id="resultado" class="result"></div>
 
-            <div class="info-note">
-                <div class="note-icon">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-                <div class="note-content">
-                    <strong>¿Encontraste algún problema?</strong>
-                    <p>Si tus notas o información personal no coinciden, por favor contacta al profesor inmediatamente.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+            <footer class="note-box">
+                <i class="fas fa-info-circle"></i>
+                <p><strong>¿Problemas con tu información?</strong><br>
+                Contacta al profesor para corregir tus datos o tus notas.</p>
+            </footer>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

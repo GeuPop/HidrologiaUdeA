@@ -1,0 +1,317 @@
+[
+  {
+    "Numero": "1",
+    "Cédula": "1002155449",
+    "Nombre": "ABELLO ALCALA MARIA",
+    "Email": "maria.abelloa@udea.edu.co",
+    "Area": "Río Otún (Pereira y Marsella) RISARALDA",
+    "P1": "2.9",
+    "P2": "2.3"
+  },
+  {
+    "Numero": "2",
+    "Cédula": "1035431338",
+    "Nombre": "ARIAS ZULUAGA PAULA ANDREA",
+    "Email": "paula.arias3@udea.edu.co",
+    "Area": "Río Supía (Supía y Riosucio) CALDAS",
+    "P1": "2.5",
+    "P2": "2.2"
+  },
+  {
+    "Numero": "3",
+    "Cédula": "1062427742",
+    "Nombre": "BERDELLA LOPEZ GABRIELA",
+    "Email": "gabriela.berdella@udea.edu.co",
+    "Area": "Río Cártama (Támesis y Valparaíso)",
+    "P1": "2.5",
+    "P2": "2.9"
+  },
+  {
+    "Numero": "4",
+    "Cédula": "1014737722",
+    "Nombre": "BERNAL FLÓREZ GABRIELA NICOL",
+    "Email": "gabriela.bernal@udea.edu.co",
+    "Area": "Río Cauca (Morales) CAUCA",
+    "P1": "2.2",
+    "P2": "1.8"
+  },
+  {
+    "Numero": "5",
+    "Cédula": "1234991421",
+    "Nombre": "CARRASCAL COLON CAMILO",
+    "Email": "camilo.carrascal1@udea.edu.co",
+    "Area": "Río San Juan (Andes y Betania)",
+    "P1": "2.2",
+    "P2": ""
+  },
+  {
+    "Numero": "6",
+    "Cédula": "1001244218",
+    "Nombre": "CHAVERRA SUÁREZ YULIZA ALEJANDRA",
+    "Email": "yuliza.chaverra@udea.edu.co",
+    "Area": "Río Chinchiná (Manizales y Villamaría) CALDAS",
+    "P1": "3.8",
+    "P2": "3.3"
+  },
+  {
+    "Numero": "7",
+    "Cédula": "1093228646",
+    "Nombre": "CRUZ ARANGO JUAN JOSE",
+    "Email": "juanj.cruz@udea.edu.co",
+    "Area": "Río Caldera (San Luis y San Francisco)",
+    "P1": "4.3",
+    "P2": "3.2"
+  },
+  {
+    "Numero": "8",
+    "Cédula": "1084331114",
+    "Nombre": "GALINDEZ CAVIEDES JUAN MANUEL",
+    "Email": "juan.galindez@udea.edu.co",
+    "Area": "Río Quindío (Armenia) QUINDÍO",
+    "P1": "3.7",
+    "P2": "2.6"
+  },
+  {
+    "Numero": "9",
+    "Cédula": "1094881920",
+    "Nombre": "GOMEZ OSPINA NICOLAS",
+    "Email": "nicolas.gomezo@udea.edu.co",
+    "Area": "Río Otún (Pereira y Marsella) RISARALDA",
+    "P1": "4.8",
+    "P2": "3.3"
+  },
+  {
+    "Numero": "10",
+    "Cédula": "1000416289",
+    "Nombre": "GONZÁLEZ GONZÁLEZ VERÓNICA",
+    "Email": "veronica.gonzalez2@udea.edu.co",
+    "Area": "Río La Miel (Marquetalia y Samaná) CALDAS",
+    "P1": "3.8",
+    "P2": "2.5"
+  },
+  {
+    "Numero": "11",
+    "Cédula": "1033257456",
+    "Nombre": "GUTIERREZ TABARES PABLO ISAAC",
+    "Email": "isaac.gutierrez@udea.edu.co",
+    "Area": "Río Magdalena (San Agustín) HUILA",
+    "P1": "3.7",
+    "P2": "3.3"
+  },
+  {
+    "Numero": "12",
+    "Cédula": "1001153005",
+    "Nombre": "HINESTROZA PALENCIA SALOME",
+    "Email": "salome.hinestroza@udea.edu.co",
+    "Area": "Río Zulia (San Cayetano) NORTE DE SANTANDER",
+    "P1": "0.8",
+    "P2": ""
+  },
+  {
+    "Numero": "13",
+    "Cédula": "1083752400",
+    "Nombre": "JOAGINOY PASCUAZA ALEXA FERNANDA",
+    "Email": "alexa.joaginoy@udea.edu.co",
+    "Area": "Río Tapias (Neira y Filadelfia) CALDAS",
+    "P1": "3.4",
+    "P2": "3.9"
+  },
+  {
+    "Numero": "14",
+    "Cédula": "1041329529",
+    "Nombre": "LÓPEZ GIRALDO JUAN DANIEL",
+    "Email": "daniel.lopez15@udea.edu.co",
+    "Area": "Río Cocorná Sur (Puerto Triunfo y Puerto Nare)",
+    "P1": "2.2",
+    "P2": "3"
+  },
+  {
+    "Numero": "15",
+    "Cédula": "1034987334",
+    "Nombre": "LOPEZ VELEZ SANTIAGO",
+    "Email": "santiago.lopezv@udea.edu.co",
+    "Area": "Río Quindío (Armenia) QUINDÍO",
+    "P1": "3.3",
+    "P2": "2.4"
+  },
+  {
+    "Numero": "16",
+    "Cédula": "1001479220",
+    "Nombre": "MAMIAN GUISAO SARA MANUELA",
+    "Email": "smanuela.mamian@udea.edu.co",
+    "Area": "Río Caldera (San Luis y San Francisco)",
+    "P1": "3.8",
+    "P2": "2.3"
+  },
+  {
+    "Numero": "17",
+    "Cédula": "1097488875",
+    "Nombre": "MANTILLA PALENCIA JUAN ESTEBAN",
+    "Email": "juanesteban.mantilla@udea.edu.co",
+    "Area": "Río La Miel (Marquetalia y Samaná) CALDAS",
+    "P1": "4.2",
+    "P2": "3.4"
+  },
+  {
+    "Numero": "18",
+    "Cédula": "1035971835",
+    "Nombre": "MARULANDA VERGARA SAMUEL",
+    "Email": "samuel.marulanda@udea.edu.co",
+    "Area": "Río Chinchiná (Manizales y Villamaría) CALDAS",
+    "P1": "2.7",
+    "P2": "3.7"
+  },
+  {
+    "Numero": "19",
+    "Cédula": "1000619650",
+    "Nombre": "MUNOZ MESA MARIA PAULA",
+    "Email": "mpaula.munoz@udea.edu.co",
+    "Area": "Río Apía (Apía y Santuario) RISARALDA",
+    "P1": "3",
+    "P2": "2.2"
+  },
+  {
+    "Numero": "20",
+    "Cédula": "1029780009",
+    "Nombre": "MUÑOZ LÓPEZ NORMA PAOLA",
+    "Email": "norma.munozl@udea.edu.co",
+    "Area": "Río Cártama (Támesis y Valparaíso)",
+    "P1": "3.3",
+    "P2": "2.8"
+  },
+  {
+    "Numero": "21",
+    "Cédula": "1039689714",
+    "Nombre": "OCAMPO GALEANO JHON FREDY",
+    "Email": "jhonf.ocampo1@udea.edu.co",
+    "Area": "Río Buey (Abejorral, Santa Bárbara y La Pintada)",
+    "P1": "2.7",
+    "P2": "1.6"
+  },
+  {
+    "Numero": "22",
+    "Cédula": "1036252034",
+    "Nombre": "OSPINA BOTERO VANESA",
+    "Email": "v.ospina@udea.edu.co",
+    "Area": "Río Nare (San Carlos y Caracolí)",
+    "P1": "4.9",
+    "P2": "3.8"
+  },
+  {
+    "Numero": "23",
+    "Cédula": "1004999383",
+    "Nombre": "PEÑARANDA DELGADO JUAN DAVID",
+    "Email": "juan.penaranda1@udea.edu.co",
+    "Area": "Río Magdalena (San Agustín) HUILA",
+    "P1": "3.6",
+    "P2": "1.9"
+  },
+  {
+    "Numero": "24",
+    "Cédula": "1066600077",
+    "Nombre": "PEREZ NASSIF LUIS MANUEL",
+    "Email": "lmanuel.perez@udea.edu.co",
+    "Area": "Río San Juan (Andes y Betania)",
+    "P1": "3.7",
+    "P2": "2.9"
+  },
+  {
+    "Numero": "25",
+    "Cédula": "1000612727",
+    "Nombre": "PEREZ SANCHEZ DAVID ESTEBAN",
+    "Email": "david.perezs@udea.edu.co",
+    "Area": "Río Las Ceibas (Neiva) HUILA",
+    "P1": "3.7",
+    "P2": "3.1"
+  },
+  {
+    "Numero": "26",
+    "Cédula": "1001142053",
+    "Nombre": "QUINTERO OCAMPO FELIPE",
+    "Email": "felipe.quinteroo@udea.edu.co",
+    "Area": "Río Cocorná Sur (Puerto Triunfo y Puerto Nare)",
+    "P1": "3.7",
+    "P2": "2.5"
+  },
+  {
+    "Numero": "27",
+    "Cédula": "1043639688",
+    "Nombre": "RINCON ORJUELA JESUS DAVID",
+    "Email": "jesus.rincon@udea.edu.co",
+    "Area": "Río Apía (Apía y Santuario) RISARALDA",
+    "P1": "2.1",
+    "P2": "1.1"
+  },
+  {
+    "Numero": "28",
+    "Cédula": "1007415105",
+    "Nombre": "ROA HERRERA ANNY MICHELLE",
+    "Email": "anny.roa@udea.edu.co",
+    "Area": "Río Tapias (Neira y Filadelfia) CALDAS",
+    "P1": "2.7",
+    "P2": "3"
+  },
+  {
+    "Numero": "29",
+    "Cédula": "1063307982",
+    "Nombre": "ROJAS VARGAS JUAN CAMILO",
+    "Email": "",
+    "Area": "Río Chicamocha (Boavita y Tipacoque) BOYACÁ",
+    "P1": "3.2",
+    "P2": "2.1"
+  },
+  {
+    "Numero": "30",
+    "Cédula": "1007963476",
+    "Nombre": "SOTO ARROYAVE JHON ESTEBAN",
+    "Email": "jhon.sotoa@udea.edu.co",
+    "Area": "Río Nare (San Carlos y Caracolí)",
+    "P1": "3.9",
+    "P2": "2.9"
+  },
+  {
+    "Numero": "31",
+    "Cédula": "1001781448",
+    "Nombre": "SUAREZ SUAREZ MARIA JOSE",
+    "Email": "maria.suarez1@udea.edu.co",
+    "Area": "Río Chicamocha (Boavita y Tipacoque) BOYACÁ",
+    "P1": "2.8",
+    "P2": ""
+  },
+  {
+    "Numero": "32",
+    "Cédula": "1004192895",
+    "Nombre": "TUTALCHA ESCOBAR JUAN SEBASTIAN",
+    "Email": "sebastian.tutalcha@udea.edu.co",
+    "Area": "Río Cauca (Morales) CAUCA",
+    "P1": "3.7",
+    "P2": "2.7"
+  },
+  {
+    "Numero": "33",
+    "Cédula": "1040871914",
+    "Nombre": "VALENCIA CASTANO LUNA",
+    "Email": "luna.valenciac@udea.edu.co",
+    "Area": "Río Las Ceibas (Neiva) HUILA",
+    "P1": "4.4",
+    "P2": "4.3"
+  },
+  {
+    "Numero": "34",
+    "Cédula": "1036660734",
+    "Nombre": "MOSQUERA IBARGUEN DELIA MARIA",
+    "Email": "delia.mosquera@udea.edu.co",
+    "Area": "Río Buey (Abejorral, Santa Bárbara y La Pintada)",
+    "P1": "2.2",
+    "P2": "2.4"
+  },
+  {
+    "Numero": "35",
+    "Cédula": "1037648094",
+    "Nombre": "ÚSUGA TIRADO MARIA ALEJANDRA",
+    "Email": "mariaa.usuga@udea.edu.co",
+    "Area": "Río Supía (Supía y Riosucio) CALDAS",
+    "P1": "2.3",
+    "P2": "2.1"
+  }
+]

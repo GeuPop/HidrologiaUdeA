@@ -1,21 +1,102 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Notas - Hidrología</title>
-</head>
-<body>
+/* ======== ESTILO GENERAL ======== */
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f6ff;
+    margin: 0;
+    padding: 0;
+}
 
-    <h2>Consulta de Notas</h2>
+.container {
+    max-width: 480px;
+    margin: auto;
+    padding: 20px;
+}
 
-    <label for="cedula">Ingrese su número de cédula:</label><br>
-    <input type="text" id="cedula"><br><br>
+/* ======== TITULO ======== */
+h1 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 20px;
+}
 
-    <button id="buscar">Buscar</button>
+/* ======== TARJETA ======== */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
 
-    <div id="resultado" style="margin-top:20px;"></div>
+/* ======== FORMULARIO ======== */
+label {
+    font-weight: bold;
+    color: #003366;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #d0d7e6;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    background: #0055aa;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #004080;
+}
+
+/* ======== RESULTADO ======== */
+.resultado {
+    margin-top: 15px;
+    padding: 15px;
+    background: #eef4ff;
+    border-radius: 10px;
+}
+
+.oculto {
+    display: none;
+}
+
+/* ======== MENSAJE ======== */
+.mensaje {
+    font-weight: bold;
+    color: #aa0000;
+    text-align: center;
+}
+
+/* ======== NOTA FINAL ======== */
+.nota {
+    margin-top: 20px;
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+/* ======== RESPONSIVE EXTRA ======== */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    input, button {
+        font-size: 15px;
+    }
+}

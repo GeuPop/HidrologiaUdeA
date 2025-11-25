@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // Mostrar estado de carga
         resultadoDiv.style.display = "block";
         resultadoDiv.innerHTML = `
             <div class="loading">
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
         `;
 
-        // Pequeña demora para mostrar la animación de carga
         setTimeout(() => {
             const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
 
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return;
             }
 
-            // Mostrar resultados
             resultadoDiv.innerHTML = `
                 <h3><i class="fas fa-user-graduate"></i> Información del Estudiante</h3>
                 <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
@@ -76,7 +73,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         resultadoDiv.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> ${mensaje}</div>`;
     }
 
-    // Permitir buscar con Enter
     inputCedula.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
             btnBuscar.click();

@@ -1,5 +1,5 @@
 // Cambia esto por el RAW URL de tu CSV en GitHub
-const CSV_URL = "TU_URL_RAW_DEL_CSV_AQUI.csv";
+const CSV_URL = "Hidro.csv";
 
 async function cargarCSV() {
     const noCacheUrl = CSV_URL + "?v=" + new Date().getTime(); // evita caché

@@ -1,50 +1,57 @@
-const CSV_URL = "Hidro.csv";
+const JSON_URL = "Hidro.json";
 
-async function cargarCSV() {
-    const response = await fetch(CSV_URL + "?v=" + Date.now());
-    const data = await response.text();
-    return parseCSV(data);
+async function cargarDatos() {
+    try {
+        const respuesta = await fetch(JSON_URL);
+        if (!respuesta.ok) {
+            throw new Error("No se pudo cargar el archivo JSON");
+        }
+        const datos = await respuesta.json();
+        return datos;
+    } catch (error) {
+        console.error("Error cargando JSON:", error);
+        return null;
+    }
 }
 
-function parseCSV(text) {
-    const rows = text.trim().split("\n").map(r => r.split(";"));
+document.addEventListener("DOMContentLoaded", async () => {
+    const datos = await cargarDatos();
+    const inputCedula = document.getElementById("cedula");
+    const btnBuscar = document.getElementById("buscar");
+    const resultadoDiv = document.getElementById("resultado");
 
-    const headers = rows[0];
-    const entries = rows.slice(1).map(row => {
-        let obj = {};
-        headers.forEach((h, i) => {
-            obj[h.trim()] = row[i] ? row[i].trim() : "";
-        });
-        return obj;
+    btnBuscar.addEventListener("click", () => {
+        const cedulaIngresada = inputCedula.value.trim();
+        if (!cedulaIngresada) {
+            resultadoDiv.innerHTML = "<p style='color:red;'>Ingrese un número de cédula.</p>";
+            return;
+        }
+
+        if (!datos) {
+            resultadoDiv.innerHTML = "<p style='color:red;'>Error cargando los datos.</p>";
+            return;
+        }
+
+        const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
+
+        if (!estudiante) {
+            resultadoDiv.innerHTML = "<p style='color:red;'>El documento no está en la base de datos.</p>";
+            return;
+        }
+
+        // Mostrar solo las columnas permitidas
+        resultadoDiv.innerHTML = `
+            <h3>Resultado</h3>
+            <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
+            <p><strong>Nombre:</strong> ${estudiante["Nombre"]}</p>
+            <p><strong>Email:</strong> ${estudiante["Email"]}</p>
+            <p><strong>P1:</strong> ${estudiante["P1"]}</p>
+            <p><strong>P2:</strong> ${estudiante["P2"]}</p>
+
+            <p style="color:red; margin-top:20px;">
+                Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas 
+                contáctese con el profesor.
+            </p>
+        `;
     });
-
-    return entries;
-}
-
-async function buscarCedula() {
-    const cedulaIngresada = document.getElementById("cedula").value.trim();
-    const salida = document.getElementById("resultado");
-    salida.innerHTML = "";
-
-    if (cedulaIngresada === "") {
-        salida.innerHTML = `<div class="error">Debe ingresar un número de cédula.</div>`;
-        return;
-    }
-
-    const data = await cargarCSV();
-    const match = data.find(d => d["Cédula"] === cedulaIngresada);
-
-    if (!match) {
-        salida.innerHTML = `<div class="error">La cédula ingresada no se encuentra en la base de datos.</div>`;
-        return;
-    }
-
-    salida.innerHTML = `
-        <div class="resultado">
-            <strong>Nombre:</strong> ${match["Nombre"]}<br>
-            <strong>Email:</strong> ${match["Email"]}<br>
-            <strong>P1:</strong> ${match["P1"]}<br>
-            <strong>P2:</strong> ${match["P2"]}<br>
-        </div>
-    `;
-}
+});

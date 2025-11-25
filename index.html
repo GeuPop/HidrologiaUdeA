@@ -1,102 +1,40 @@
-/* ======== ESTILO GENERAL ======== */
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f6ff;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hidrología UdeA - Consulta de Notas</title>
 
-.container {
-    max-width: 480px;
-    margin: auto;
-    padding: 20px;
-}
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
 
-/* ======== TITULO ======== */
-h1 {
-    text-align: center;
-    color: #003366;
-    margin-bottom: 20px;
-}
+    <div class="container">
+        <h1>Hidrología UdeA</h1>
+        <p class="subtitulo">En esta página usted podrá consultar sus notas por número de cédula.</p>
 
-/* ======== TARJETA ======== */
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
+        <div class="card">
+            <label for="cedulaInput">Número de cédula:</label>
+            <input type="number" id="cedulaInput" placeholder="Ingrese su cédula" />
 
-/* ======== FORMULARIO ======== */
-label {
-    font-weight: bold;
-    color: #003366;
-}
+            <button onclick="buscar()">Consultar</button>
 
-input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    margin-bottom: 15px;
-    border: 1px solid #d0d7e6;
-    border-radius: 8px;
-    font-size: 16px;
-}
+            <p id="mensaje" class="mensaje"></p>
 
-button {
-    width: 100%;
-    background: #0055aa;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
+            <div id="resultado" class="resultado oculto">
+                <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>P1:</strong> <span id="p1"></span></p>
+                <p><strong>P2:</strong> <span id="p2"></span></p>
+            </div>
+        </div>
 
-button:hover {
-    background: #004080;
-}
+        <p class="nota">
+            Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas contáctese con el profesor.
+        </p>
+    </div>
 
-/* ======== RESULTADO ======== */
-.resultado {
-    margin-top: 15px;
-    padding: 15px;
-    background: #eef4ff;
-    border-radius: 10px;
-}
-
-.oculto {
-    display: none;
-}
-
-/* ======== MENSAJE ======== */
-.mensaje {
-    font-weight: bold;
-    color: #aa0000;
-    text-align: center;
-}
-
-/* ======== NOTA FINAL ======== */
-.nota {
-    margin-top: 20px;
-    color: red;
-    text-align: center;
-    font-size: 14px;
-    padding: 0 10px;
-}
-
-/* ======== RESPONSIVE EXTRA ======== */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 22px;
-    }
-
-    .card {
-        padding: 18px;
-    }
-
-    input, button {
-        font-size: 15px;
-    }
-}
+    <script src="script.js?v=3"></script>
+</body>
+</html>

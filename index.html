@@ -3,38 +3,140 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hidrología UdeA - Consulta de Notas</title>
+    <title>Calculadora de Intensidad de Lluvia</title>
 
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <style>
+        /* ======== ESTILO GENERAL ======== */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d7e3ff, #f2f6ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* ======== TITULO ======== */
+        h1 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        /* ======== TARJETA ======== */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* ======== FORMULARIO ======== */
+        label {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #c7d4ec;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #f9fbff;
+        }
+
+        button {
+            width: 100%;
+            background: #0055cc;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #003f99;
+            transform: scale(1.01);
+        }
+
+        /* ======== RESULTADO ======== */
+        .resultado {
+            margin-top: 18px;
+            padding: 18px;
+            background: #eef4ff;
+            border-radius: 12px;
+            border-left: 4px solid #0055cc;
+            font-size: 17px;
+            color: #003366;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        /* ======== MENSAJE DE ERROR ======== */
+        .mensaje {
+            font-weight: bold;
+            color: #cc0000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* ======== NOTA FINAL ======== */
+        .nota {
+            margin-top: 20px;
+            color: #444;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ======== RESPONSIVE ======== */
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Hidrología UdeA</h1>
-        <p class="subtitulo">En esta página usted podrá consultar sus notas por número de cédula.</p>
+        <h1>Calculadora de Intensidad</h1>
 
         <div class="card">
-            <label for="cedulaInput">Número de cédula:</label>
-            <input type="number" id="cedulaInput" placeholder="Ingrese su cédula" />
+            <div id="mensaje" class="mensaje oculto"></div>
 
-            <button onclick="buscar()">Consultar</button>
+            <label>Valor de lluvia (mm)</label>
+            <input type="number" id="lluvia" placeholder="Ej: 29.3">
 
-            <p id="mensaje" class="mensaje"></p>
+            <label>Tiempo (minutos)</label>
+            <input type="number" id="tiempo" placeholder="Ej: 17">
 
-            <div id="resultado" class="resultado oculto">
-                <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-                <p><strong>Email:</strong> <span id="email"></span></p>
-                <p><strong>P1:</strong> <span id="p1"></span></p>
-                <p><strong>P2:</strong> <span id="p2"></span></p>
-            </div>
+            <button onclick="calcular()">Calcular intensidad</button>
+
+            <div id="resultado" class="resultado oculto"></div>
         </div>
 
-        <p class="nota">
-            Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas contáctese con el profesor.
-        </p>
+        <div class="nota">
+            Calculadora diseñada por GeuPop · Hidrología UdeA
+        </div>
     </div>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>

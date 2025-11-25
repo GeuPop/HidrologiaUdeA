@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de Intensidad de Lluvia</title>
+    <title>Datos Hidrológicos</title>
 
     <style>
-        /* ======== ESTILO GENERAL ======== */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #d7e3ff, #f2f6ff);
@@ -15,19 +14,17 @@
         }
 
         .container {
-            max-width: 480px;
+            max-width: 700px;
             margin: auto;
             padding: 20px;
         }
 
-        /* ======== TITULO ======== */
         h1 {
             text-align: center;
             color: #003366;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* ======== TARJETA ======== */
         .card {
             background: white;
             padding: 25px;
@@ -35,79 +32,38 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        /* ======== FORMULARIO ======== */
-        label {
-            font-weight: bold;
-            color: #003366;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            margin-bottom: 15px;
-            border: 1px solid #c7d4ec;
-            border-radius: 10px;
-            font-size: 16px;
-            background: #f9fbff;
-        }
-
-        button {
-            width: 100%;
+        th {
             background: #0055cc;
             color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.2s;
+            padding: 12px;
+            border-radius: 5px;
         }
 
-        button:hover {
-            background: #003f99;
-            transform: scale(1.01);
+        td {
+            padding: 10px;
+            text-align: center;
+            background: #f8faff;
+            border-bottom: 1px solid #d0d7e6;
         }
 
-        /* ======== RESULTADO ======== */
-        .resultado {
-            margin-top: 18px;
-            padding: 18px;
-            background: #eef4ff;
-            border-radius: 12px;
-            border-left: 4px solid #0055cc;
-            font-size: 17px;
-            color: #003366;
-        }
-
-        .oculto {
-            display: none;
-        }
-
-        /* ======== MENSAJE DE ERROR ======== */
-        .mensaje {
-            font-weight: bold;
+        .error {
             color: #cc0000;
             text-align: center;
-            margin-bottom: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        /* ======== NOTA FINAL ======== */
         .nota {
             margin-top: 20px;
             color: #444;
             text-align: center;
             font-size: 14px;
-        }
-
-        /* ======== RESPONSIVE ======== */
-        @media (max-width: 480px) {
-            .card {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 22px;
-            }
         }
     </style>
 </head>
@@ -115,24 +71,19 @@
 <body>
 
     <div class="container">
-        <h1>Calculadora de Intensidad</h1>
+        <h1>Datos Hidrológicos — UdeA</h1>
 
         <div class="card">
-            <div id="mensaje" class="mensaje oculto"></div>
+            <div id="error" class="error"></div>
 
-            <label>Valor de lluvia (mm)</label>
-            <input type="number" id="lluvia" placeholder="Ej: 29.3">
-
-            <label>Tiempo (minutos)</label>
-            <input type="number" id="tiempo" placeholder="Ej: 17">
-
-            <button onclick="calcular()">Calcular intensidad</button>
-
-            <div id="resultado" class="resultado oculto"></div>
+            <table id="tabla" class="oculto">
+                <thead id="thead"></thead>
+                <tbody id="tbody"></tbody>
+            </table>
         </div>
 
         <div class="nota">
-            Calculadora diseñada por GeuPop · Hidrología UdeA
+            Fuente: Archivo JSON cargado desde GitHub Pages
         </div>
     </div>
 

@@ -14,10 +14,10 @@ async function cargarCSV() {
 
 function parseCSV(csv) {
     const lineas = csv.trim().split("\n");
-    const headers = lineas[0].split(",");
+    const headers = lineas[0].split(";");
 
     return lineas.slice(1).map(linea => {
-        const columnas = linea.split(",");
+        const columnas = linea.split(";");
         let obj = {};
         headers.forEach((h, i) => {
             obj[h.trim()] = columnas[i]?.trim();

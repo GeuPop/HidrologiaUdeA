@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // Mostrar solo las columnas permitidas
         resultadoDiv.innerHTML = `
             <h3>Resultado</h3>
             <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
@@ -47,11 +46,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>Email:</strong> ${estudiante["Email"]}</p>
             <p><strong>P1:</strong> ${estudiante["P1"]}</p>
             <p><strong>P2:</strong> ${estudiante["P2"]}</p>
-
-            <p style="color:red; margin-top:20px;">
-                Si tiene dudas sobre las notas o el nombre y notas no corresponde a las suyas 
-                contáctese con el profesor.
-            </p>
         `;
     });
 });

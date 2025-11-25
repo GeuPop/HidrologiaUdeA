@@ -24,53 +24,81 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cedulaIngresada = inputCedula.value.trim();
         
         if (!cedulaIngresada) {
-            mostrarError("Ingrese un número de cédula.");
+            mostrarError("Por favor, ingrese un número de cédula válido.");
             return;
         }
 
         if (!datos) {
-            mostrarError("Error cargando los datos.");
+            mostrarError("Error al cargar los datos del sistema.");
             return;
         }
 
-        resultadoDiv.style.display = "block";
-        resultadoDiv.innerHTML = `
-            <div class="loading">
-                <i class="fas fa-spinner"></i> Buscando información...
-            </div>
-        `;
+        mostrarCargando();
 
         setTimeout(() => {
             const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
 
             if (!estudiante) {
-                mostrarError("El documento no está en la base de datos.");
+                mostrarError("No se encontró ningún estudiante con esta cédula.");
                 return;
             }
 
-            resultadoDiv.innerHTML = `
-                <h3><i class="fas fa-user-graduate"></i> Información del Estudiante</h3>
-                <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
-                <p><strong>Nombre:</strong> ${estudiante["Nombre"]}</p>
-                <p><strong>Email:</strong> ${estudiante["Email"]}</p>
-                
-                <div class="notas-container">
-                    <div class="nota-item">
-                        <strong>Parcial 1</strong>
-                        <div class="nota-valor">${estudiante["P1"]}</div>
-                    </div>
-                    <div class="nota-item">
-                        <strong>Parcial 2</strong>
-                        <div class="nota-valor">${estudiante["P2"]}</div>
-                    </div>
-                </div>
-            `;
-        }, 800);
+            mostrarResultado(estudiante);
+        }, 1000);
     });
 
+    function mostrarCargando() {
+        resultadoDiv.className = "result-container show";
+        resultadoDiv.innerHTML = `
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Buscando información...</p>
+            </div>
+        `;
+    }
+
     function mostrarError(mensaje) {
-        resultadoDiv.style.display = "block";
-        resultadoDiv.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> ${mensaje}</div>`;
+        resultadoDiv.className = "result-container show";
+        resultadoDiv.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>${mensaje}</span>
+            </div>
+        `;
+    }
+
+    function mostrarResultado(estudiante) {
+        resultadoDiv.className = "result-container show";
+        resultadoDiv.innerHTML = `
+            <div class="result-header">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Información del Estudiante</h3>
+            </div>
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="result-label">Cédula:</span>
+                    <span class="result-value">${estudiante["Cédula"]}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Nombre:</span>
+                    <span class="result-value">${estudiante["Nombre"]}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Email:</span>
+                    <span class="result-value">${estudiante["Email"]}</span>
+                </div>
+            </div>
+            <div class="grades-container">
+                <div class="grade-card">
+                    <div class="grade-label">Parcial 1</div>
+                    <div class="grade-value">${estudiante["P1"]}</div>
+                </div>
+                <div class="grade-card">
+                    <div class="grade-label">Parcial 2</div>
+                    <div class="grade-value">${estudiante["P2"]}</div>
+                </div>
+            </div>
+        `;
     }
 
     inputCedula.addEventListener("keypress", (e) => {

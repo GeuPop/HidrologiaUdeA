@@ -2,18 +2,22 @@
    PALETA DE COLORES
 ============================ */
 :root {
-    --blue-100: #e0f2ff;
-    --blue-200: #b9e1ff;
-    --blue-400: #4ea8ff;
-    --blue-600: #1e6fd9;
-    --blue-800: #134e9b;
+    --blue-50: #e8f3ff;
+    --blue-100: #d0e7ff;
+    --blue-300: #7bb8ff;
+    --blue-500: #1e90ff;
+    --blue-600: #0f6edc;
+    --blue-800: #084d9a;
 
-    --bg-dark: #0f172a;
-    --text: #f1f5f9;
-    --gray: #94a3b8;
+    --gray-200: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-600: #64748b;
 
-    --radius: 14px;
-    --transition: 0.25s ease;
+    --bg: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.06);
+
+    --radius: 16px;
+    --transition: 0.25s ease-in-out;
 }
 
 /* ============================
@@ -27,26 +31,29 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background: var(--bg-dark);
-    color: var(--text);
+    background: var(--bg);
+    color: white;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Fondo suave */
+/* ============================
+   FONDO ANIMADO SUAVE
+============================ */
 .background {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 30% 20%, #1e3a8a55, transparent),
-                radial-gradient(circle at 80% 80%, #1d4ed855, transparent);
+    background:
+        radial-gradient(circle at 25% 25%, #1e3a8a33, transparent 60%),
+        radial-gradient(circle at 80% 70%, #1e40af33, transparent 60%);
     filter: blur(60px);
     z-index: -1;
 }
 
 /* ============================
-   CARD
+   CONTENEDOR DEL CARD
 ============================ */
 .container {
     width: 100%;
@@ -55,11 +62,11 @@ body {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--card-bg);
     backdrop-filter: blur(18px);
-    border-radius: var(--radius);
     padding: 40px 34px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: var(--radius);
+    box-shadow: 0 12px 40px #00000055;
 }
 
 /* ============================
@@ -71,35 +78,35 @@ body {
 }
 
 .icon-bubble {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
-    margin: 0 auto;
+    width: 75px;
+    height: 75px;
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-300));
     border-radius: 50%;
     display: grid;
     place-items: center;
     color: white;
-    font-size: 1.6rem;
-    margin-bottom: 16px;
-    box-shadow: 0 8px 20px rgba(30, 111, 217, 0.4);
+    font-size: 1.7rem;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 20px rgba(30, 90, 235, 0.6);
 }
 
 .header h1 {
-    font-size: 1.9rem;
+    font-size: 2rem;
     font-weight: 700;
+    color: var(--blue-50);
 }
 
 .subtitle {
-    margin-top: 4px;
-    color: var(--gray);
+    margin-top: 6px;
+    color: var(--gray-400);
     font-size: 1rem;
 }
 
 /* ============================
-   FORM
+   FORMULARIO
 ============================ */
 .input-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
@@ -107,24 +114,25 @@ body {
     gap: 8px;
     align-items: center;
     font-weight: 500;
-    margin-bottom: 8px;
-    color: var(--blue-200);
+    margin-bottom: 6px;
+    color: var(--blue-100);
 }
 
 .input-group input {
     width: 100%;
     padding: 14px;
     border-radius: var(--radius);
-    border: 1px solid #ffffff15;
-    background: #ffffff0d;
+    border: 1px solid #ffffff22;
+    background: rgba(255, 255, 255, 0.08);
     color: white;
+    font-size: 1rem;
     transition: var(--transition);
 }
 
 .input-group input:focus {
-    border-color: var(--blue-400);
+    border-color: var(--blue-300);
     outline: none;
-    box-shadow: 0 0 0 3px #4ea8ff33;
+    box-shadow: 0 0 0 3px #7bb8ff44;
 }
 
 /* ============================
@@ -139,14 +147,14 @@ body {
     color: white;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
     font-size: 1.05rem;
+    transition: var(--transition);
 }
 
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(78, 168, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(30, 100, 255, 0.35);
 }
 
 /* ============================
@@ -156,7 +164,7 @@ body {
     margin-top: 26px;
     padding: 20px;
     display: none;
-    background: #ffffff0b;
+    background: rgba(255, 255, 255, 0.09);
     border-radius: var(--radius);
 }
 
@@ -166,27 +174,26 @@ body {
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 .res-title {
     display: flex;
-    gap: 10px;
     align-items: center;
-    font-size: 1.2rem;
-    margin-bottom: 14px;
-    color: var(--blue-200);
+    gap: 10px;
+    color: var(--blue-100);
+    margin-bottom: 12px;
 }
 
 .res-grid {
     display: grid;
-    gap: 8px 0;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
 /* ============================
-   CALIFICACIONES
+   GRADES
 ============================ */
 .grades {
     display: grid;
@@ -195,31 +202,30 @@ body {
 }
 
 .grade-card {
-    background: #ffffff0d;
-    padding: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 18px;
     border-radius: var(--radius);
     text-align: center;
-    border: 1px solid #ffffff10;
+    border: 1px solid #ffffff22;
     transition: var(--transition);
 }
 
 .grade-card:hover {
-    background: #ffffff15;
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .grade-card h2 {
     margin-top: 6px;
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--blue-200);
+    font-size: 2rem;
+    color: var(--blue-100);
 }
 
 /* ============================
-   MENSAJES
+   ERRORES Y CARGA
 ============================ */
 .error {
-    background: #ff4d4d22;
-    border-left: 3px solid #ff4d4d;
+    background: rgba(255, 70, 70, 0.15);
+    border-left: 4px solid #ff4d4d;
     padding: 12px;
     border-radius: var(--radius);
     display: flex;
@@ -234,11 +240,11 @@ body {
 .spinner {
     width: 45px;
     height: 45px;
-    border: 4px solid #ffffff22;
+    border: 4px solid #ffffff33;
     border-top-color: var(--blue-400);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 0 auto 8px;
+    margin: 0 auto 10px;
 }
 
 @keyframes spin {
@@ -246,16 +252,16 @@ body {
 }
 
 /* ============================
-   FOOTER / INFO
+   NOTE
 ============================ */
 .note-box {
     margin-top: 30px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius);
+    color: var(--gray-300);
     display: flex;
     gap: 12px;
-    padding: 16px;
-    background: #ffffff0a;
-    border-radius: var(--radius);
-    color: var(--gray);
-    font-size: 0.9rem;
     line-height: 1.4;
 }
+

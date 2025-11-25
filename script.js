@@ -22,30 +22,64 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     btnBuscar.addEventListener("click", () => {
         const cedulaIngresada = inputCedula.value.trim();
+        
         if (!cedulaIngresada) {
-            resultadoDiv.innerHTML = "<p style='color:red;'>Ingrese un número de cédula.</p>";
+            mostrarError("Ingrese un número de cédula.");
             return;
         }
 
         if (!datos) {
-            resultadoDiv.innerHTML = "<p style='color:red;'>Error cargando los datos.</p>";
+            mostrarError("Error cargando los datos.");
             return;
         }
 
-        const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
-
-        if (!estudiante) {
-            resultadoDiv.innerHTML = "<p style='color:red;'>El documento no está en la base de datos.</p>";
-            return;
-        }
-
+        // Mostrar estado de carga
+        resultadoDiv.style.display = "block";
         resultadoDiv.innerHTML = `
-            <h3>Resultado</h3>
-            <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
-            <p><strong>Nombre:</strong> ${estudiante["Nombre"]}</p>
-            <p><strong>Email:</strong> ${estudiante["Email"]}</p>
-            <p><strong>P1:</strong> ${estudiante["P1"]}</p>
-            <p><strong>P2:</strong> ${estudiante["P2"]}</p>
+            <div class="loading">
+                <i class="fas fa-spinner"></i> Buscando información...
+            </div>
         `;
+
+        // Pequeña demora para mostrar la animación de carga
+        setTimeout(() => {
+            const estudiante = datos.find(e => e.Cédula == cedulaIngresada);
+
+            if (!estudiante) {
+                mostrarError("El documento no está en la base de datos.");
+                return;
+            }
+
+            // Mostrar resultados
+            resultadoDiv.innerHTML = `
+                <h3><i class="fas fa-user-graduate"></i> Información del Estudiante</h3>
+                <p><strong>Cédula:</strong> ${estudiante["Cédula"]}</p>
+                <p><strong>Nombre:</strong> ${estudiante["Nombre"]}</p>
+                <p><strong>Email:</strong> ${estudiante["Email"]}</p>
+                
+                <div class="notas-container">
+                    <div class="nota-item">
+                        <strong>Parcial 1</strong>
+                        <div class="nota-valor">${estudiante["P1"]}</div>
+                    </div>
+                    <div class="nota-item">
+                        <strong>Parcial 2</strong>
+                        <div class="nota-valor">${estudiante["P2"]}</div>
+                    </div>
+                </div>
+            `;
+        }, 800);
+    });
+
+    function mostrarError(mensaje) {
+        resultadoDiv.style.display = "block";
+        resultadoDiv.innerHTML = `<div class="error"><i class="fas fa-exclamation-triangle"></i> ${mensaje}</div>`;
+    }
+
+    // Permitir buscar con Enter
+    inputCedula.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            btnBuscar.click();
+        }
     });
 });

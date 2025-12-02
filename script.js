@@ -84,6 +84,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <span>Parcial 2</span>
                     <h2>${est["P2"]}</h2>
                 </div>
+                <div class="grade-card">
+                    <span>Actividad Complementaria</span>
+                    <h2>${est["ActComP"]}</h2>
+                </div>
             </div>
         `;
     }

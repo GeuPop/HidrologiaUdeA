@@ -6,7 +6,8 @@
     "Email": "maria.abelloa@udea.edu.co",
     "Area": "Río Otún (Pereira y Marsella) RISARALDA",
     "P1": "2.9",
-    "P2": "2.3"
+    "P2": "2.3",
+    "ActComP": "5"
   },
   {
     "Numero": "2",
@@ -15,7 +16,8 @@
     "Email": "paula.arias3@udea.edu.co",
     "Area": "Río Supía (Supía y Riosucio) CALDAS",
     "P1": "2.5",
-    "P2": "2.2"
+    "P2": "2.2",
+    "ActComP": "4.7"
   },
   {
     "Numero": "3",
@@ -24,7 +26,8 @@
     "Email": "gabriela.berdella@udea.edu.co",
     "Area": "Río Cártama (Támesis y Valparaíso)",
     "P1": "2.5",
-    "P2": "2.9"
+    "P2": "2.9",
+    "ActComP": "4.5"
   },
   {
     "Numero": "4",
@@ -33,7 +36,8 @@
     "Email": "gabriela.bernal@udea.edu.co",
     "Area": "Río Cauca (Morales) CAUCA",
     "P1": "2.2",
-    "P2": "1.8"
+    "P2": "1.8",
+    "ActComP": "4.2"
   },
   {
     "Numero": "5",
@@ -42,7 +46,8 @@
     "Email": "camilo.carrascal1@udea.edu.co",
     "Area": "Río San Juan (Andes y Betania)",
     "P1": "2.2",
-    "P2": ""
+    "P2": "",
+    "ActComP": ""
   },
   {
     "Numero": "6",
@@ -51,7 +56,8 @@
     "Email": "yuliza.chaverra@udea.edu.co",
     "Area": "Río Chinchiná (Manizales y Villamaría) CALDAS",
     "P1": "3.8",
-    "P2": "3.3"
+    "P2": "3.3",
+    "ActComP": "4.7"
   },
   {
     "Numero": "7",
@@ -60,7 +66,8 @@
     "Email": "juanj.cruz@udea.edu.co",
     "Area": "Río Caldera (San Luis y San Francisco)",
     "P1": "4.3",
-    "P2": "3.2"
+    "P2": "3.2",
+    "ActComP": "5"
   },
   {
     "Numero": "8",
@@ -69,7 +76,8 @@
     "Email": "juan.galindez@udea.edu.co",
     "Area": "Río Quindío (Armenia) QUINDÍO",
     "P1": "3.7",
-    "P2": "2.6"
+    "P2": "2.6",
+    "ActComP": "5"
   },
   {
     "Numero": "9",
@@ -78,7 +86,8 @@
     "Email": "nicolas.gomezo@udea.edu.co",
     "Area": "Río Otún (Pereira y Marsella) RISARALDA",
     "P1": "4.8",
-    "P2": "3.3"
+    "P2": "3.3",
+    "ActComP": "4.7"
   },
   {
     "Numero": "10",
@@ -87,7 +96,8 @@
     "Email": "veronica.gonzalez2@udea.edu.co",
     "Area": "Río La Miel (Marquetalia y Samaná) CALDAS",
     "P1": "3.8",
-    "P2": "2.5"
+    "P2": "2.5",
+    "ActComP": "4.7"
   },
   {
     "Numero": "11",
@@ -96,7 +106,8 @@
     "Email": "isaac.gutierrez@udea.edu.co",
     "Area": "Río Magdalena (San Agustín) HUILA",
     "P1": "3.7",
-    "P2": "3.3"
+    "P2": "3.3",
+    "ActComP": "4.8"
   },
   {
     "Numero": "12",
@@ -105,7 +116,8 @@
     "Email": "salome.hinestroza@udea.edu.co",
     "Area": "Río Zulia (San Cayetano) NORTE DE SANTANDER",
     "P1": "0.8",
-    "P2": ""
+    "P2": "",
+    "ActComP": ""
   },
   {
     "Numero": "13",
@@ -114,7 +126,8 @@
     "Email": "alexa.joaginoy@udea.edu.co",
     "Area": "Río Tapias (Neira y Filadelfia) CALDAS",
     "P1": "3.4",
-    "P2": "3.9"
+    "P2": "3.9",
+    "ActComP": "4.9"
   },
   {
     "Numero": "14",
@@ -123,7 +136,8 @@
     "Email": "daniel.lopez15@udea.edu.co",
     "Area": "Río Cocorná Sur (Puerto Triunfo y Puerto Nare)",
     "P1": "2.2",
-    "P2": "3"
+    "P2": "3",
+    "ActComP": "4.5"
   },
   {
     "Numero": "15",
@@ -132,7 +146,8 @@
     "Email": "santiago.lopezv@udea.edu.co",
     "Area": "Río Quindío (Armenia) QUINDÍO",
     "P1": "3.3",
-    "P2": "2.4"
+    "P2": "2.4",
+    "ActComP": "4.6"
   },
   {
     "Numero": "16",
@@ -141,7 +156,8 @@
     "Email": "smanuela.mamian@udea.edu.co",
     "Area": "Río Caldera (San Luis y San Francisco)",
     "P1": "3.8",
-    "P2": "2.3"
+    "P2": "2.3",
+    "ActComP": "4.7"
   },
   {
     "Numero": "17",
@@ -150,7 +166,8 @@
     "Email": "juanesteban.mantilla@udea.edu.co",
     "Area": "Río La Miel (Marquetalia y Samaná) CALDAS",
     "P1": "4.2",
-    "P2": "3.4"
+    "P2": "3.4",
+    "ActComP": "4.1"
   },
   {
     "Numero": "18",
@@ -159,7 +176,8 @@
     "Email": "samuel.marulanda@udea.edu.co",
     "Area": "Río Chinchiná (Manizales y Villamaría) CALDAS",
     "P1": "2.7",
-    "P2": "3.7"
+    "P2": "3.7",
+    "ActComP": "5"
   },
   {
     "Numero": "19",
@@ -168,7 +186,8 @@
     "Email": "mpaula.munoz@udea.edu.co",
     "Area": "Río Apía (Apía y Santuario) RISARALDA",
     "P1": "3",
-    "P2": "2.2"
+    "P2": "2.2",
+    "ActComP": "4"
   },
   {
     "Numero": "20",
@@ -177,7 +196,8 @@
     "Email": "norma.munozl@udea.edu.co",
     "Area": "Río Cártama (Támesis y Valparaíso)",
     "P1": "3.3",
-    "P2": "2.8"
+    "P2": "2.8",
+    "ActComP": "4.2"
   },
   {
     "Numero": "21",
@@ -186,7 +206,8 @@
     "Email": "jhonf.ocampo1@udea.edu.co",
     "Area": "Río Buey (Abejorral, Santa Bárbara y La Pintada)",
     "P1": "2.7",
-    "P2": "1.6"
+    "P2": "1.6",
+    "ActComP": "5"
   },
   {
     "Numero": "22",
@@ -195,7 +216,8 @@
     "Email": "v.ospina@udea.edu.co",
     "Area": "Río Nare (San Carlos y Caracolí)",
     "P1": "4.9",
-    "P2": "3.8"
+    "P2": "3.8",
+    "ActComP": "5"
   },
   {
     "Numero": "23",
@@ -204,7 +226,8 @@
     "Email": "juan.penaranda1@udea.edu.co",
     "Area": "Río Magdalena (San Agustín) HUILA",
     "P1": "3.6",
-    "P2": "1.9"
+    "P2": "1.9",
+    "ActComP": "4.2"
   },
   {
     "Numero": "24",
@@ -213,7 +236,8 @@
     "Email": "lmanuel.perez@udea.edu.co",
     "Area": "Río San Juan (Andes y Betania)",
     "P1": "3.7",
-    "P2": "2.9"
+    "P2": "2.9",
+    "ActComP": "0"
   },
   {
     "Numero": "25",
@@ -222,7 +246,8 @@
     "Email": "david.perezs@udea.edu.co",
     "Area": "Río Las Ceibas (Neiva) HUILA",
     "P1": "3.7",
-    "P2": "3.1"
+    "P2": "3.1",
+    "ActComP": "4.2"
   },
   {
     "Numero": "26",
@@ -231,7 +256,8 @@
     "Email": "felipe.quinteroo@udea.edu.co",
     "Area": "Río Cocorná Sur (Puerto Triunfo y Puerto Nare)",
     "P1": "3.7",
-    "P2": "2.5"
+    "P2": "2.5",
+    "ActComP": "4.6"
   },
   {
     "Numero": "27",
@@ -240,7 +266,8 @@
     "Email": "jesus.rincon@udea.edu.co",
     "Area": "Río Apía (Apía y Santuario) RISARALDA",
     "P1": "2.1",
-    "P2": "1.1"
+    "P2": "1.1",
+    "ActComP": "5"
   },
   {
     "Numero": "28",
@@ -249,7 +276,8 @@
     "Email": "anny.roa@udea.edu.co",
     "Area": "Río Tapias (Neira y Filadelfia) CALDAS",
     "P1": "2.7",
-    "P2": "3"
+    "P2": "3",
+    "ActComP": "5"
   },
   {
     "Numero": "29",
@@ -258,7 +286,8 @@
     "Email": "",
     "Area": "Río Chicamocha (Boavita y Tipacoque) BOYACÁ",
     "P1": "3.2",
-    "P2": "2.1"
+    "P2": "2.1",
+    "ActComP": "5"
   },
   {
     "Numero": "30",
@@ -267,7 +296,8 @@
     "Email": "jhon.sotoa@udea.edu.co",
     "Area": "Río Nare (San Carlos y Caracolí)",
     "P1": "3.9",
-    "P2": "2.9"
+    "P2": "2.9",
+    "ActComP": "5"
   },
   {
     "Numero": "31",
@@ -276,7 +306,8 @@
     "Email": "maria.suarez1@udea.edu.co",
     "Area": "Río Chicamocha (Boavita y Tipacoque) BOYACÁ",
     "P1": "2.8",
-    "P2": ""
+    "P2": "",
+    "ActComP": "5"
   },
   {
     "Numero": "32",
@@ -285,7 +316,8 @@
     "Email": "sebastian.tutalcha@udea.edu.co",
     "Area": "Río Cauca (Morales) CAUCA",
     "P1": "3.7",
-    "P2": "2.7"
+    "P2": "2.7",
+    "ActComP": "4.7"
   },
   {
     "Numero": "33",
@@ -294,7 +326,8 @@
     "Email": "luna.valenciac@udea.edu.co",
     "Area": "Río Las Ceibas (Neiva) HUILA",
     "P1": "4.4",
-    "P2": "4.3"
+    "P2": "4.3",
+    "ActComP": "5"
   },
   {
     "Numero": "34",
@@ -303,7 +336,8 @@
     "Email": "delia.mosquera@udea.edu.co",
     "Area": "Río Buey (Abejorral, Santa Bárbara y La Pintada)",
     "P1": "2.2",
-    "P2": "2.4"
+    "P2": "2.4",
+    "ActComP": "4.7"
   },
   {
     "Numero": "35",
@@ -312,6 +346,7 @@
     "Email": "mariaa.usuga@udea.edu.co",
     "Area": "Río Supía (Supía y Riosucio) CALDAS",
     "P1": "2.3",
-    "P2": "2.1"
+    "P2": "2.1",
+    "ActComP": "4.8"
   }
 ]

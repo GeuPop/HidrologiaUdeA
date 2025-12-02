@@ -264,4 +264,15 @@ body {
     gap: 12px;
     line-height: 1.4;
 }
+.result { 
+    overflow: visible; 
+}
+
+.grades { 
+    overflow: visible; 
+}
+
+.grade-card { 
+    min-height: 100px; 
+}
 

@@ -77,15 +77,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             <div class="grades">
                 <div class="grade-card">
-                    <span>Parcial 1</span>
+                    <span>Parcial 1 (20%)</span>
                     <h2>${est["P1"]}</h2>
                 </div>
                 <div class="grade-card">
-                    <span>Parcial 2</span>
+                    <span>Parcial 2 (20%)</span>
                     <h2>${est["P2"]}</h2>
                 </div>
                 <div class="grade-card">
-                    <span>Actividad Complementaria</span>
+                    <span>Actividad Complementaria (10%)</span>
                     <h2>${est["ActComP"]}</h2>
                 </div>
             </div>
